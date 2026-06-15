@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JustDoad Offer Advisor</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --accent: #7c3aed;
+      --accent-2: #a78bfa;
+      --ok: #10b981;
+      --chip: #1f2937;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at top, #1e293b, var(--bg) 45%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .advisor {
+      max-width: 920px;
+      margin: 0 auto;
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+    .hero {
+      padding: 32px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(17, 24, 39, 0.4));
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      line-height: 1.2;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+      line-height: 1.45;
+    }
+    .chips {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chip {
+      border: 1px solid var(--border);
+      background: var(--chip);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .chip:hover { border-color: var(--accent-2); }
+    .chat {
+      padding: 20px 20px 8px;
+      max-height: 50vh;
+      overflow-y: auto;
+      display: grid;
+      gap: 12px;
+    }
+    .bubble {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      line-height: 1.45;
+      max-width: 85%;
+      white-space: pre-wrap;
+    }
+    .bubble.user {
+      margin-left: auto;
+      background: rgba(124, 58, 237, 0.15);
+      border-color: rgba(124, 58, 237, 0.45);
+    }
+    .bubble.bot {
+      background: rgba(15, 23, 42, 0.8);
+    }
+    .results {
+      padding: 8px 20px 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: #0b1222;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+    .meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .pill {
+      font-size: 0.78rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px 8px;
+      color: #cbd5e1;
+    }
+    .price {
+      color: var(--ok);
+      font-weight: 600;
+    }
+    .card p {
+      margin: 0 0 10px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+    .card a {
+      color: #c4b5fd;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .card a:hover { text-decoration: underline; }
+    .compose {
+      padding: 14px 20px 22px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      gap: 10px;
+      background: #0b1324;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+    input, button {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+    }
+    input {
+      background: #020617;
+      color: var(--text);
+      padding: 12px 14px;
+      width: 100%;
+    }
+    button {
+      background: linear-gradient(135deg, var(--accent), #6d28d9);
+      color: #fff;
+      padding: 12px 16px;
+      cursor: pointer;
+      min-width: 120px;
+      border: none;
+      font-weight: 600;
+    }
+    button:hover { filter: brightness(1.08); }
+    .note {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+    .possibilities {
+      margin-top: 4px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    .possibility {
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 8px;
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      background: rgba(2, 6, 23, 0.4);
+    }
+    @media (max-width: 700px) {
+      body { padding: 12px; }
+      .hero { padding: 24px 16px 16px; }
+      .chat, .results, .compose { padding-left: 14px; padding-right: 14px; }
+      .row { grid-template-columns: 1fr; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <section class="advisor">
+    <header class="hero">
+      <h1>Was bringt dich heute zu JustDoad?</h1>
+      <p class="subtitle">
+        Beschreibe dein Ziel in 1-2 Sätzen (z. B. "Ich brauche mehr Sichtbarkeit mit kleinem Budget").
+        Der Advisor empfiehlt dir passende Kurse, Pakete und Coaching-Möglichkeiten.
+      </p>
+      <div class="chips" id="starterChips"></div>
+    </header>
+
+    <div class="chat" id="chat"></div>
+    <div class="results" id="results"></div>
+
+    <form class="compose" id="form">
+      <div class="row">
+        <input id="input" type="text" placeholder="Welche Unterstützung brauchst du?" autocomplete="off">
+        <button type="submit">Empfehlen</button>
+      </div>
+      <div class="note">
+        Datenbasis: Öffentliche Angebotsinformationen von eclass.justdoad.ch/de/offers (Stand: Juni 2026).
+      </div>
+    </form>
+  </section>
+
+  <script>
+    const starterPrompts = [
+      "Ich brauche eine Website und Branding",
+      "Ich will bessere Social-Media-Videos erstellen",
+      "Ich brauche eine klare Kampagnen-Idee",
+      "Ich möchte mit KI-Tools effizienter werden",
+      "Ich möchte erst Strategie und dann Umsetzung",
+      "Ich brauche 1:1 Sparring mit einem Coach"
+    ];
+
+    const offers = [
+      {
+        id: "key-visual",
+        title: "Key Visual: Gib deiner Botschaft ein Gesicht",
+        type: "Kurs mit Coaching",
+        price: "ab CHF 75",
+        sessions: "2 Coaching-Sitzungen",
+        duration: "11h 27m",
+        summary: "Visuelles Kernmotiv entwickeln, das über Kampagnen und Kanäle funktioniert.",
+        tags: ["key visual", "kampagne", "visuell", "branding", "botschaft"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=key-visual-erstellung"
+      },
+      {
+        id: "brand-identity",
+        title: "Dein Angebot als Marke denken",
+        type: "Kurs mit Coaching",
+        price: "ab CHF 75",
+        sessions: "3 Coaching-Sitzungen",
+        duration: "6h 24m",
+        summary: "Logo, Farben, Schrift und Bildwelt für einen professionellen Markenauftritt.",
+        tags: ["branding", "identität", "logo", "marke", "visuelle identität"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=branding-identitt"
+      },
+      {
+        id: "visual-storytelling",
+        title: "Geschichten visuell erzählen. Ideen wirksam machen.",
+        type: "Kurs mit Coaching",
+        price: "ab CHF 75",
+        sessions: "1 Coaching-Sitzung",
+        duration: "4h 21m",
+        summary: "Botschaften in starke visuelle Stories übersetzen, die im Gedächtnis bleiben.",
+        tags: ["storytelling", "visuell", "kampagne", "emotion", "content"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=visual-storytelling"
+      },
+      {
+        id: "idea-that-sticks",
+        title: "Verwandle deine Botschaft in eine Idee, die hängen bleibt",
+        type: "Kurs mit Coaching",
+        price: "ab CHF 75",
+        sessions: "2 Coaching-Sitzungen",
+        duration: "4h 24m",
+        summary: "Kreative Konzepte entwickeln, die klar, überraschend und wirkungsvoll sind.",
+        tags: ["konzept", "kreativ", "idee", "kampagne", "kommunikation"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=ideenfindung-brainstorming"
+      },
+      {
+        id: "website-home",
+        title: "Deine Website als digitales Zuhause",
+        type: "Kurs mit Coaching",
+        price: "ab CHF 75",
+        sessions: "4 Coaching-Sitzungen",
+        duration: "6h 15m",
+        summary: "Moderne, nutzerfreundliche Website mit Struktur, Design und passenden Tools.",
+        tags: ["website", "webdesign", "ui", "ux", "online auftritt"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=webdesign"
+      },
+      {
+        id: "briefing-strategy",
+        title: "Briefing: Strategie, die Kreativität möglich macht",
+        type: "Kurs mit Coaching",
+        price: "ab CHF 75",
+        sessions: "3 Coaching-Sitzungen",
+        duration: "4h 48m",
+        summary: "Positionierung, USP und Kernbotschaft als Basis für wirksame Kommunikation.",
+        tags: ["strategie", "briefing", "positionierung", "usp", "kernbotschaft"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=strategie-konzeptentwicklung"
+      },
+      {
+        id: "video-social-web",
+        title: "Videos für Social Media und Web",
+        type: "Kurs mit Coaching",
+        price: "ab CHF 75",
+        sessions: "2 Coaching-Sitzungen",
+        duration: "7h 13m",
+        summary: "Video-Planung bis Schnitt: starke Inhalte für Website, Social Media und Ads.",
+        tags: ["video", "social media", "film", "schnitt", "storytelling"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=film-bewegtbild"
+      },
+      {
+        id: "concept-campaign-package",
+        title: "Paket: Dein Konzept. Deine Kampagne.",
+        type: "Paket",
+        price: "CHF 780",
+        sessions: "3 Angebote",
+        duration: "13h 33m",
+        summary: "Mehrere Module für starke strategische und konzeptionelle Kampagnen-Basis.",
+        tags: ["paket", "strategie", "kampagne", "konzept", "module"],
+        link: "https://eclass.justdoad.ch/de/offers"
+      },
+      {
+        id: "visualization-package",
+        title: "Paket: Visualisierung – Mach deine Idee sichtbar",
+        type: "Paket",
+        price: "CHF 1380 (statt 1560)",
+        sessions: "4 Angebote",
+        duration: "31h 19m",
+        summary: "Visuelles Toolkit für Branding, Web, Film und Kampagnen mit optionalem Coaching.",
+        tags: ["paket", "visualisierung", "branding", "web", "film", "design"],
+        link: "https://eclass.justdoad.ch/de/offers"
+      }
+    ];
+
+    const additionalPossibilities = [
+      {
+        title: "Ping-Pong-Session",
+        text: "Kurzes Sparring für schnelle Rückmeldung zu einer konkreten Frage."
+      },
+      {
+        title: "Training / Workshop",
+        text: "Gezielter Wissensaufbau für Team oder Einzelperson."
+      },
+      {
+        title: "Hands-on-Hilfe",
+        text: "Direkte Unterstützung bei einem aktuellen Problem im Projekt."
+      },
+      {
+        title: "Full-Immersion",
+        text: "Coach arbeitet intensiv direkt mit dir am Projekt."
+      }
+    ];
+
+    const priorityRules = [
+      { test: /budget|günstig|klein|start/i, boostType: "Kurs mit Coaching" },
+      { test: /komplett|alles|intensiv|umfassend|paket/i, boostType: "Paket" },
+      { test: /coach|begleitung|sparring|feedback|hilfe/i, boostType: "Kurs mit Coaching" }
+    ];
+
+    const synonymBoosts = [
+      { test: /website|webseite|homepage|landingpage/i, tag: "website" },
+      { test: /marke|branding|identität|logo/i, tag: "branding" },
+      { test: /video|reels|tiktok|youtube|film/i, tag: "video" },
+      { test: /strategie|positionierung|briefing|usp/i, tag: "strategie" },
+      { test: /idee|kreativ|brainstorm/i, tag: "idee" },
+      { test: /social|content|instagram|linkedin/i, tag: "social media" },
+      { test: /ki|ai|prompt|workflow/i, tag: "ki" }
+    ];
+
+    const chatEl = document.getElementById("chat");
+    const resultsEl = document.getElementById("results");
+    const formEl = document.getElementById("form");
+    const inputEl = document.getElementById("input");
+    const starterChipsEl = document.getElementById("starterChips");
+
+    function normalize(value) {
+      return value
+        .toLowerCase()
+        .replace(/[ä]/g, "ae")
+        .replace(/[ö]/g, "oe")
+        .replace(/[ü]/g, "ue")
+        .replace(/[ß]/g, "ss");
+    }
+
+    function addBubble(role, text) {
+      const bubble = document.createElement("div");
+      bubble.className = "bubble " + role;
+      bubble.textContent = text;
+      chatEl.appendChild(bubble);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    }
+
+    function buildScore(query, offer) {
+      let score = 0;
+      const q = normalize(query);
+      const haystack = normalize(`${offer.title} ${offer.summary} ${offer.tags.join(" ")}`);
+
+      if (q.length < 3) return 0;
+
+      q.split(/[^a-z0-9]+/).filter(Boolean).forEach((token) => {
+        if (token.length < 3) return;
+        if (haystack.includes(token)) score += 3;
+      });
+
+      synonymBoosts.forEach((rule) => {
+        if (rule.test.test(q) && haystack.includes(rule.tag)) score += 6;
+      });
+
+      priorityRules.forEach((rule) => {
+        if (rule.test.test(query) && offer.type === rule.boostType) score += 4;
+      });
+
+      if (/ki|ai|prompt|workflow/i.test(q) && /website|branding|video|strategie/.test(haystack)) {
+        score += 2;
+      }
+
+      return score;
+    }
+
+    function recommend(query) {
+      const scored = offers
+        .map((offer) => ({ offer, score: buildScore(query, offer) }))
+        .sort((a, b) => b.score - a.score);
+
+      const relevant = scored.filter((entry) => entry.score > 0).slice(0, 3);
+      if (relevant.length) return relevant.map((entry) => entry.offer);
+
+      return [
+        offers.find((offer) => offer.id === "briefing-strategy"),
+        offers.find((offer) => offer.id === "website-home"),
+        offers.find((offer) => offer.id === "video-social-web")
+      ];
+    }
+
+    function renderPossibilities() {
+      const box = document.createElement("div");
+      box.className = "possibilities";
+
+      additionalPossibilities.forEach((item) => {
+        const el = document.createElement("div");
+        el.className = "possibility";
+        el.innerHTML = `<strong>${item.title}</strong><br>${item.text}`;
+        box.appendChild(el);
+      });
+
+      resultsEl.appendChild(box);
+    }
+
+    function renderCards(recommendations) {
+      resultsEl.innerHTML = "";
+      recommendations.forEach((item) => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h3>${item.title}</h3>
+          <div class="meta">
+            <span class="pill">${item.type}</span>
+            <span class="pill">${item.sessions}</span>
+            <span class="pill">${item.duration}</span>
+            <span class="pill price">${item.price}</span>
+          </div>
+          <p>${item.summary}</p>
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer">Zum passenden Angebot</a>
+        `;
+        resultsEl.appendChild(card);
+      });
+      renderPossibilities();
+    }
+
+    function runAdvisor(query) {
+      addBubble("user", query);
+      const recommendations = recommend(query);
+      const intro = recommendations[0];
+      addBubble(
+        "bot",
+        `Top-Empfehlung für dich: ${intro.title}\n\n` +
+        "Ich habe dir zusätzlich 2 weitere passende Optionen und die verfügbaren Coaching-Formate angezeigt."
+      );
+      renderCards(recommendations);
+    }
+
+    starterPrompts.forEach((prompt) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "chip";
+      button.textContent = prompt;
+      button.addEventListener("click", () => {
+        inputEl.value = prompt;
+        runAdvisor(prompt);
+      });
+      starterChipsEl.appendChild(button);
+    });
+
+    formEl.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const query = inputEl.value.trim();
+      if (!query) return;
+      runAdvisor(query);
+      inputEl.value = "";
+    });
+
+    addBubble(
+      "bot",
+      "Hi, ich bin dein JustDoad Offer Advisor. Beschreibe dein Ziel und ich zeige dir die besten Möglichkeiten (Kurse, Pakete und Coaching-Formate)."
+    );
+  </script>
+</body>
+</html>

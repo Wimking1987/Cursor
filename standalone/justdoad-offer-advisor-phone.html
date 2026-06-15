@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>JustDoad Advisor - Phone Test</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121a2f;
+      --line: #253250;
+      --text: #eef2ff;
+      --muted: #a8b2d1;
+      --brand: #7c3aed;
+      --ok: #22c55e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #131c38 0%, var(--bg) 48%);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .wrap {
+      min-height: 100dvh;
+      max-width: 680px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    .hero {
+      padding: 18px 14px 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(124, 58, 237, 0.12);
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+    .quick {
+      padding: 10px 14px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .chip {
+      background: #0f1730;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 0.84rem;
+      text-align: center;
+      cursor: pointer;
+    }
+    .chat {
+      padding: 12px 14px;
+      overflow-y: auto;
+      display: grid;
+      gap: 9px;
+      align-content: start;
+      max-height: 44dvh;
+    }
+    .msg {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 11px;
+      font-size: 0.92rem;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      max-width: 92%;
+    }
+    .bot { background: #0f1730; }
+    .user {
+      margin-left: auto;
+      background: rgba(124, 58, 237, 0.2);
+      border-color: rgba(124, 58, 237, 0.5);
+    }
+    .cards {
+      padding: 2px 14px 12px;
+      display: grid;
+      gap: 10px;
+      overflow-y: auto;
+    }
+    .card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 12px;
+      padding: 11px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      line-height: 1.25;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .badge {
+      font-size: 0.72rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 2px 7px;
+      color: #dbe4ff;
+    }
+    .price { color: var(--ok); }
+    .card p {
+      margin: 0 0 8px;
+      color: #d5ddf8;
+      font-size: 0.9rem;
+      line-height: 1.32;
+    }
+    .card a {
+      color: #c4b5fd;
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .compose {
+      border-top: 1px solid var(--line);
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      background: #0a1022;
+      display: grid;
+      gap: 8px;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+    input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #020719;
+      color: var(--text);
+      padding: 12px 11px;
+      font-size: 16px;
+    }
+    button[type="submit"] {
+      border: 0;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #7c3aed, #5b21b6);
+      color: #fff;
+      padding: 12px 13px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-width: 94px;
+      cursor: pointer;
+    }
+    .note {
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.3;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <h1>JustDoad Offer Advisor</h1>
+      <p class="sub">Sag kurz, was du brauchst. Ich zeige dir passende Kurse, Pakete und Coaching-Möglichkeiten.</p>
+    </header>
+
+    <section class="quick" id="quick"></section>
+    <section class="chat" id="chat"></section>
+    <section class="cards" id="cards"></section>
+
+    <form class="compose" id="form">
+      <div class="row">
+        <input id="q" placeholder="z. B. Ich brauche Website + Branding">
+        <button type="submit">Suchen</button>
+      </div>
+      <div class="note">Phone test build • Datenbasis: eclass.justdoad.ch/de/offers (Juni 2026)</div>
+    </form>
+  </main>
+
+  <script>
+    const quickPrompts = [
+      "Website + Branding",
+      "Bessere Social Videos",
+      "Strategie + Kampagne",
+      "KI-Tools lernen"
+    ];
+
+    const offers = [
+      {
+        title: "Deine Website als digitales Zuhause",
+        type: "Kurs mit Coaching",
+        sessions: "4 Coaching-Sitzungen",
+        duration: "6h 15m",
+        price: "ab CHF 75",
+        summary: "Strukturierte, moderne Website ohne Code – klarer Auftritt mit passendem Design.",
+        tags: ["website", "webdesign", "ui", "ux"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=webdesign"
+      },
+      {
+        title: "Dein Angebot als Marke denken",
+        type: "Kurs mit Coaching",
+        sessions: "3 Coaching-Sitzungen",
+        duration: "6h 24m",
+        price: "ab CHF 75",
+        summary: "Logo, Farben, Schriften und Bildwelt für einen starken Markenauftritt.",
+        tags: ["branding", "identität", "logo", "marke"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=branding-identitt"
+      },
+      {
+        title: "Videos für Social Media und Web",
+        type: "Kurs mit Coaching",
+        sessions: "2 Coaching-Sitzungen",
+        duration: "7h 13m",
+        price: "ab CHF 75",
+        summary: "Von der Idee bis zum Schnitt: Video-Content für Social, Website und Ads.",
+        tags: ["video", "social", "film", "content"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=film-bewegtbild"
+      },
+      {
+        title: "Briefing: Strategie, die Kreativität möglich macht",
+        type: "Kurs mit Coaching",
+        sessions: "3 Coaching-Sitzungen",
+        duration: "4h 48m",
+        price: "ab CHF 75",
+        summary: "Positionierung, USP und Kernbotschaft als strategische Basis.",
+        tags: ["strategie", "briefing", "usp", "positionierung"],
+        link: "https://eclass.justdoad.ch/de/offers?topics=strategie-konzeptentwicklung"
+      },
+      {
+        title: "Paket: Dein Konzept. Deine Kampagne.",
+        type: "Paket",
+        sessions: "3 Angebote",
+        duration: "13h 33m",
+        price: "CHF 780",
+        summary: "Mehrere Module für kreative Konzepte und Kampagnen-Fundament.",
+        tags: ["paket", "kampagne", "konzept", "strategie"],
+        link: "https://eclass.justdoad.ch/de/offers"
+      },
+      {
+        title: "Paket: Visualisierung – Mach deine Idee sichtbar",
+        type: "Paket",
+        sessions: "4 Angebote",
+        duration: "31h 19m",
+        price: "CHF 1380",
+        summary: "Visuelles Toolkit für Branding, Web, Film und Kampagnen.",
+        tags: ["paket", "visualisierung", "branding", "design", "web", "film"],
+        link: "https://eclass.justdoad.ch/de/offers"
+      }
+    ];
+
+    const coachingFormats = [
+      "Ping-Pong-Session",
+      "Training / Workshop",
+      "Hands-on-Hilfe",
+      "Full-Immersion"
+    ];
+
+    const chat = document.getElementById("chat");
+    const cards = document.getElementById("cards");
+    const quick = document.getElementById("quick");
+    const form = document.getElementById("form");
+    const input = document.getElementById("q");
+
+    function msg(role, text) {
+      const div = document.createElement("div");
+      div.className = "msg " + role;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function score(query, offer) {
+      const q = query.toLowerCase();
+      const blob = (offer.title + " " + offer.summary + " " + offer.tags.join(" ")).toLowerCase();
+      let s = 0;
+      q.split(/[^a-z0-9äöüß]+/).filter(Boolean).forEach((token) => {
+        if (token.length > 2 && blob.includes(token)) s += 3;
+      });
+      if (/website|webseite|homepage|landingpage/.test(q) && blob.includes("website")) s += 6;
+      if (/brand|marke|logo|identität/.test(q) && blob.includes("branding")) s += 6;
+      if (/video|reel|social|film|content/.test(q) && (blob.includes("video") || blob.includes("social"))) s += 6;
+      if (/strategie|positionierung|briefing|usp/.test(q) && blob.includes("strategie")) s += 6;
+      if (/komplett|paket|intensiv|alles/.test(q) && offer.type === "Paket") s += 5;
+      return s;
+    }
+
+    function recommend(query) {
+      const ranked = offers
+        .map((o) => ({ o, s: score(query, o) }))
+        .sort((a, b) => b.s - a.s)
+        .map((x) => x.o);
+      return ranked.slice(0, 3);
+    }
+
+    function render(items) {
+      cards.innerHTML = "";
+      items.forEach((o) => {
+        const el = document.createElement("article");
+        el.className = "card";
+        el.innerHTML = `
+          <h3>${o.title}</h3>
+          <div class="badges">
+            <span class="badge">${o.type}</span>
+            <span class="badge">${o.sessions}</span>
+            <span class="badge">${o.duration}</span>
+            <span class="badge price">${o.price}</span>
+          </div>
+          <p>${o.summary}</p>
+          <a href="${o.link}" target="_blank" rel="noopener noreferrer">Zum Angebot</a>
+        `;
+        cards.appendChild(el);
+      });
+
+      const formats = document.createElement("article");
+      formats.className = "card";
+      formats.innerHTML = `<h3>Weitere Möglichkeiten</h3><p>${coachingFormats.join(" • ")}</p>`;
+      cards.appendChild(formats);
+    }
+
+    function run(query) {
+      msg("user", query);
+      const items = recommend(query);
+      msg("bot", "Top-Empfehlung: " + items[0].title + "\nIch zeige dir 2 weitere passende Optionen darunter.");
+      render(items);
+    }
+
+    quickPrompts.forEach((p) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.textContent = p;
+      b.onclick = () => { input.value = p; run(p); };
+      quick.appendChild(b);
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (!q) return;
+      run(q);
+      input.value = "";
+    });
+
+    msg("bot", "Hi 👋 Teste mich direkt: Was möchtest du für dein Angebot/Marketing erreichen?");
+    render(offers.slice(0, 3));
+  </script>
+</body>
+</html>

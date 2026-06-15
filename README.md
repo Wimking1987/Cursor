@@ -11,6 +11,8 @@ The widget is inspired by the onboarding style used on sites like MasterClass ("
 
 - `standalone/justdoad-offer-advisor.html`  
   Standalone HTML widget (chat + smart recommendations + offer cards).
+- `standalone/justdoad-offer-advisor-phone.html`  
+  Mobile-first quick test version for phone screens.
 
 ## What it does
 
@@ -42,6 +44,13 @@ The widget is inspired by the onboarding style used on sites like MasterClass ("
    - Add Element -> Embed Code -> Embed HTML.
    - Paste the code.
 4. Publish and test.
+
+## Fast phone test
+
+1. Open `standalone/justdoad-offer-advisor-phone.html`.
+2. Copy all content.
+3. In Wix Studio: Add Element -> Embed Code -> Embed HTML.
+4. Paste, publish, and open your published Wix page on your phone.
 
 ## Data note
 

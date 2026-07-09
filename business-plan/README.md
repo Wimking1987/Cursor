@@ -1,5 +1,7 @@
 # Business Plan — 3D‑Printed Classic‑Car Spare Parts & Print‑on‑Demand
 
+> 🇩🇪 **Deutsche Version:** siehe Ordner [`de/`](de/README.md).
+
 This folder contains a complete, investor‑ and bank‑ready business plan for a
 company that produces **3D‑printed prototypes and production‑ready parts**, with
 an initial focus on **spare parts for classic cars ("Oldtimer")** — especially
@@ -22,7 +24,7 @@ into a **print‑on‑demand + prototype‑development service**.
 
 We turn broken, missing, or discontinued classic‑car parts back into physical
 reality. Using a **Formlabs Form 3L** (large‑format resin/SLA) and a
-**Bambu Lab (X1‑class) FDM printer**, combined with a **3D scanner** for reverse
+**Bambu Lab X1 Carbon (X1C) FDM printer**, combined with a **3D scanner** for reverse
 engineering, we scan or model a part, produce it to fit, and finish it to look
 and function like the original. Around this core we build two recurring revenue
 engines: a **catalog of ready‑to‑order reproduction parts** and a

@@ -30,7 +30,7 @@ spent (sunk). Fresh cash needed to *operate and grow* is modest.
 |------|------:|
 | Formlabs Form 3L (large‑format SLA) | €10,000 |
 | Form Wash L + Form Cure L (post‑processing) | €5,000 |
-| Bambu Lab (X1‑class) FDM printer | €1,500 |
+| Bambu Lab X1 Carbon (X1C) FDM printer | €1,500 |
 | 3D scanner | €1,500 |
 | **Subtotal (owned)** | **€18,000** |
 

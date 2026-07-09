@@ -20,7 +20,7 @@ We solve this with **additive manufacturing (3D printing) plus 3D scanning and
 CAD**. We reverse‑engineer a part from a sample or reference, reproduce it to
 fit and finish, and deliver either a **one‑off replacement** or a **small
 production series**. Because we already own professional‑grade equipment (a
-**Formlabs Form 3L** resin printer, a **Bambu Lab (X1‑class) FDM printer**, and a
+**Formlabs Form 3L** resin printer, a **Bambu Lab X1 Carbon (X1C) FDM printer**, and a
 **3D scanner**), our marginal cost to serve each order is low and our quality is
 high.
 
@@ -123,7 +123,7 @@ multi‑part components. Finish quality is our moat versus hobbyist competitors.
 | Asset | Role | Strengths | Typical parts |
 |-------|------|-----------|---------------|
 | **Formlabs Form 3L** (large‑format SLA/resin) | High‑detail, large parts, smooth surfaces | Fine features, excellent surface finish, large build volume, wide resin range (tough, durable, flexible, high‑temp) | Detailed trim, complex geometries, master patterns, casting patterns |
-| **Bambu Lab (X1‑class) FDM** | Fast, tough, cost‑efficient functional parts | Speed, engineering filaments (ASA/PETG/PA‑CF), multi‑color, low cost per part | Brackets, clips, vents, housings, functional & UV‑exposed parts |
+| **Bambu Lab X1 Carbon (X1C) FDM** | Fast, tough, cost‑efficient functional parts | Speed, engineering filaments (ASA/PETG/PA‑CF), multi‑color (AMS), low cost per part | Brackets, clips, vents, housings, functional & UV‑exposed parts |
 | **3D scanner** | Reverse engineering / digitising originals | Captures real geometry so reproductions fit; enables scan‑to‑CAD | Any physical reference part |
 | **CAD / slicer stack** | Design & preparation | Fusion 360 / equivalent; PreForm; Bambu Studio | All jobs |
 
@@ -132,9 +132,9 @@ original), FDM gives us **function and cost** (survives heat, UV, and mechanical
 load at low price), and the scanner gives us **accuracy** (it actually fits).
 Together they cover almost every interior/trim reproduction need.
 
-> Note: confirm your exact FDM model (you mentioned "H1C" — likely a Bambu Lab
-> X1‑Carbon or H2D class machine). The plan works with any of them; only the
-> per‑hour throughput assumptions shift slightly.
+> FDM printer confirmed: **Bambu Lab X1 Carbon (X1C)** — a fast, enclosed
+> CoreXY machine well suited to engineering filaments (ASA/PETG/PA‑CF) and,
+> with the AMS, multi‑material/multi‑color work.
 
 ---
 

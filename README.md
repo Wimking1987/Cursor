@@ -8,7 +8,7 @@ Eine Datei reicht:
 
 **`Hochzeit-Tagesablauf-Entwurf.html`**
 
-Doppelklick / im Browser öffnen – funktioniert standalone (CSS + JS sind eingebettet). Optional lädt sie Online-Schriften; ohne Internet bleiben Systemschriften.
+Doppelklick / im Browser öffnen – funktioniert standalone (CSS + JS eingebettet, keine weiteren Dateien nötig).
 
 `index.html` ist dieselbe Datei.
 

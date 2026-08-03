@@ -2,21 +2,21 @@
 
 Grober Zeitplan für die freie Trauung in der Scheune (5.&nbsp;September&nbsp;2026, 15:00–03:00).
 
-## Als Entwurf versenden
+## Am Handy öffnen
 
-Eine Datei reicht:
+https://htmlpreview.github.io/?https://github.com/Wimking1987/Cursor/blob/cursor/hochzeit-zeitplan-bb38/Hochzeit-Tagesablauf-Entwurf.html
 
-**`Hochzeit-Tagesablauf-Entwurf.html`**
+Oder Datei **`Hochzeit-Tagesablauf-Entwurf.html`** – standalone (CSS, JS und Zeitkapsel-Visual eingebettet).
 
-Doppelklick / im Browser öffnen – funktioniert standalone (CSS + JS eingebettet, keine weiteren Dateien nötig).
+## Zeitkapsel-Visual für Canva / Druck
 
-`index.html` ist dieselbe Datei.
+- **`zeitkapsel-stand-canva.jpg`** – hochauflösend, in Canva hochladen und weiterbearbeiten
+- Das Plakat ist auch direkt im HTML-Entwurf zu sehen
 
 ## Inhalt
 
-- Persönliche Bausteine: Landkarten-Zeremonie, Ehegelübde / Ehevertrag, Zeitkapsel-Stand, Beiträge & Spiele
-- Zeremonie ab 16:00: Gastansprache kurz vor dem Ehegelübde (5–10 Min.), Ehegelübde 15–20 Min., Oper ca. 16:30
-- Zeitkapsel als Stand neben dem Geschehen (ganztags)
-- Tageszeitplan bis 03:00
-
-Zusätzlich: `ZEITPLAN.md` zum Kopieren nach Notion o. Ä.
+- Modernes dunkles Layout mit Kernzeiten 15:00 / 16:00 / 16:30
+- Zeremonie: Landkarte → Gastansprache (5–10 Min.) → Ehegelübde (15–20 Min.) → Oper
+- Zeitkapsel-Stand mit Visual
+- Abhakbare Vorbereitungs-Checkliste
+- Zusätzlich: `ZEITPLAN.md`

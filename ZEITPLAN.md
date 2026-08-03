@@ -1,4 +1,4 @@
-# Hochzeit Sascha und Irina · Grober Tagesablauf
+# Hochzeit Irina und Sascha · Grober Tagesablauf
 
 **Datum:** 5. September 2026  
 **Ort:** Scheune  
@@ -15,8 +15,8 @@ Erste Gäste um 15:00, Zeremonie ab 16:00. Die **Landkarte** wird vorab unabhän
 ## 🌍 Landkarte
 
 **Vor dem Tag (unabhängig):**
-- Sascha markiert Orte, zu denen er reisen möchte
 - Irina markiert Orte, zu denen sie reisen möchte
+- Sascha markiert Orte, zu denen er reisen möchte
 - Ohne Absprache – jeder für sich
 
 **Revival in der Zeremonie (gemeinsam, ca. 16:05):**

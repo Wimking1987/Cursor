@@ -82,10 +82,11 @@ body {
   position: relative;
   min-height: 220px;
   background:
-    radial-gradient(circle at 18% 22%, #ffd6e2 0%, transparent 42%),
-    radial-gradient(circle at 88% 18%, #ddd0ff 0%, transparent 38%),
-    radial-gradient(circle at 72% 85%, #c9ebdd 0%, transparent 42%),
-    linear-gradient(145deg, #ffe3ec 0%, #eadcf8 45%, #d5ecea 100%);
+    linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(80, 55, 70, 0.28) 100%),
+    radial-gradient(circle at 20% 25%, #f7c9d4 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, #d9c7f0 0%, transparent 40%),
+    radial-gradient(circle at 70% 80%, #b8d4c8 0%, transparent 45%),
+    linear-gradient(145deg, #f3d5de 0%, #e7d0ea 42%, #c9dde0 100%);
   color: var(--ink);
   box-shadow: var(--shadow);
   animation: rise 0.6s ease both;
@@ -102,7 +103,7 @@ body {
 .hero-eyebrow {
   margin: 0;
   font-size: 0.85rem;
-  opacity: 0.9;
+  color: var(--muted);
 }
 .hero h1 {
   margin: 0;
@@ -116,11 +117,13 @@ body {
   display: flex;
   gap: 0.9rem;
   align-items: center;
-  background: rgba(28, 27, 24, 0.45);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(8px);
   border-radius: 999px;
   padding: 0.55rem 0.95rem;
   width: fit-content;
+  color: var(--ink);
+  border: 1px solid rgba(255,255,255,0.85);
 }
 .countdown div {
   text-align: center;

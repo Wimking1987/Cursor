@@ -115,6 +115,9 @@ main {
 .panel:nth-of-type(2) { animation-delay: 0.16s; }
 .panel:nth-of-type(3) { animation-delay: 0.24s; }
 .panel:nth-of-type(4) { animation-delay: 0.32s; }
+.panel:nth-of-type(5) { animation-delay: 0.4s; }
+.panel:nth-of-type(6) { animation-delay: 0.48s; }
+
 .capsule-hints {
   margin: 0;
   padding-left: 1.15rem;
@@ -133,8 +136,6 @@ main {
   color: var(--leaf);
   font-size: 0.95rem;
 }
-
-.panel:nth-of-type(6) { animation-delay: 0.48s; }
 
 .panel h2 {
   margin: 0 0 0.75rem;

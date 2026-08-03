@@ -8,23 +8,27 @@
 
 ## Kurzfassung
 
-Erste Gäste um 15:00, Zeremonie ab 16:00. Die **Landkarte** wird vor dem Tag vorbereitet (10 gemeinsame Orte + 2 Traumziele) und in der Zeremonie wieder aufgegriffen. Kurz vor dem Ehegelübde spricht ein Gast/Trauzeuge (5–10 Min.), danach Ehegelübde (15–20 Min.) – dann Feier. Zeitkapsel-Stand läuft parallel den ganzen Tag.
+Erste Gäste um 15:00, Zeremonie ab 16:00. Die **Landkarte** wird vorab unabhängig markiert (Wunschziele zum Reisen) und in der Zeremonie gemeinsam wieder aufgegriffen – was passt, was ist gemeinsam? Kurz vor dem Ehegelübde spricht ein Gast/Trauzeuge (5–10 Min.), danach Ehegelübde (15–20 Min.) – dann Feier. Zeitkapsel-Stand läuft parallel den ganzen Tag.
 
 ---
 
 ## 🌍 Landkarte
 
-Sascha und Irina markieren **vorab**:
-- **10 Orte**, die sie bereits gemeinsam besucht haben
-- **2 Traumziele**, die sie noch bereisen möchten
+**Vor dem Tag (unabhängig):**
+- Sascha markiert Orte, zu denen er reisen möchte
+- Irina markiert Orte, zu denen sie reisen möchte
+- Ohne Absprache – jeder für sich
 
-In der Zeremonie (ca. 16:05): **Revival** – Karte zeigen, kurz erzählen, gemeinsam anschauen.
+**Revival in der Zeremonie (gemeinsam, ca. 16:05):**
+- Karte gemeinsam aufklappen
+- Vergleichen: Was überschneidet sich? Was fühlt sich stimmig an?
+- Gemeinsamkeiten feiern
 
 ---
 
 ## 📦 Zeitkapsel-Stand
 
-Neben dem Geschehen: Karten, Stifte, Box. Öffnung zum 5. oder 10. Jahrestag.
+Neben dem Geschehen: Karten, Stifte, Box. Öffnung zum 5. oder 10. Jahrestag. Visual im Pastell-UI-Stil.
 
 ---
 
@@ -33,7 +37,7 @@ Neben dem Geschehen: Karten, Stifte, Box. Öffnung zum 5. oder 10. Jahrestag.
 | Zeit | Inhalt |
 |------|--------|
 | 16:00 | Beginn / Begrüßung |
-| 16:05 | 🌍 Landkarten-Revival (10 + 2 Orte) |
+| 16:05 | 🌍 Landkarten-Revival (gemeinsam vergleichen) |
 | 16:15 | Gast / Trauzeuge – Ansprache (5–10 Min., Person noch offen) |
 | 16:20 | ✍️ Ehegelübde · Ehevertrag der Liebe (15–20 Min.) |
 | ca. 16:40 | Übergang zur Feier |
@@ -42,7 +46,7 @@ Neben dem Geschehen: Karten, Stifte, Box. Öffnung zum 5. oder 10. Jahrestag.
 
 ## Vorbereitung
 
-- [ ] Landkarte: 10 gemeinsame Orte + 2 Traumziele vorab markieren; Pins/Legende/Plakat
+- [ ] Landkarte + zwei Pin-Farben: Wunschziele unabhängig markieren; Plakat für Revival
 - [ ] Ehevertrag der Liebe / Ehegelübde vorformulieren
 - [ ] Zeitkapsel-Stand aufbauen
 - [ ] Gast/Trauzeugen für Ansprache festlegen

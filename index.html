@@ -337,12 +337,80 @@ main {
 
 .checklist ul {
   margin: 0;
-  padding-left: 1.15rem;
+  padding: 0;
+  list-style: none;
   color: var(--ink-soft);
 }
 
 .checklist li {
-  margin-bottom: 0.45rem;
+  margin: 0;
+}
+
+.checklist li + li {
+  margin-top: 0.35rem;
+}
+
+.check-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.55rem 0.65rem;
+  margin: 0 -0.65rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.check-item:hover {
+  background: rgba(47, 93, 74, 0.06);
+}
+
+.check-item input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0.15rem 0 0;
+  flex-shrink: 0;
+  border: 2px solid var(--leaf);
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.check-item input:checked {
+  background: var(--leaf);
+  border-color: var(--leaf-deep);
+}
+
+.check-item input:checked::after {
+  content: "";
+  position: absolute;
+  left: 0.28rem;
+  top: 0.05rem;
+  width: 0.28rem;
+  height: 0.55rem;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.check-item input:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.check-item:has(input:checked) span {
+  text-decoration: line-through;
+  color: rgba(61, 74, 67, 0.55);
+}
+
+.checklist-hint {
+  margin: 0.85rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  opacity: 0.85;
 }
 
 footer {
@@ -764,15 +832,52 @@ footer {
 
     <section class="panel checklist" aria-labelledby="prep-heading">
       <h2 id="prep-heading">Vorbereitung</h2>
+      <p class="section-lead">Zum Abhaken – der Stand bleibt in diesem Browser gespeichert.</p>
       <ul>
-        <li>Große Landkarte + Stifte / Pins für die Markierungen bereitstellen</li>
-        <li>Ehevertrag der Liebe / Ehegelübde vorformulieren – Platz für Unterschriften</li>
-        <li>Zeitkapsel-Stand: schöne Karten, Papier, Stifte, Box; Hinweis „Öffnung 5. oder 10. Jahrestag“</li>
-        <li>Gast oder Trauzeugen für die Ansprache kurz vor dem Ehegelübde festlegen (noch offen, 5–10 Min.)</li>
-        <li>Oper gegen 16:30 einplanen / absprechen</li>
-        <li>Zeremonienleitung einweisen: Landkarte → Gastansprache → Ehegelübde (15–20 Min.) → Oper → Feier</li>
-        <li>Beiträge-Slots mit Trauzeugen vorab grob befüllen</li>
+        <li>
+          <label class="check-item">
+            <input type="checkbox" data-prep="landkarte" />
+            <span>Große Landkarte + Stifte / Pins für die Markierungen bereitstellen</span>
+          </label>
+        </li>
+        <li>
+          <label class="check-item">
+            <input type="checkbox" data-prep="ehevertrag" />
+            <span>Ehevertrag der Liebe / Ehegelübde vorformulieren – Platz für Unterschriften</span>
+          </label>
+        </li>
+        <li>
+          <label class="check-item">
+            <input type="checkbox" data-prep="zeitkapsel" />
+            <span>Zeitkapsel-Stand: schöne Karten, Papier, Stifte, Box; Hinweis „Öffnung 5. oder 10. Jahrestag“</span>
+          </label>
+        </li>
+        <li>
+          <label class="check-item">
+            <input type="checkbox" data-prep="ansprache" />
+            <span>Gast oder Trauzeugen für die Ansprache kurz vor dem Ehegelübde festlegen (noch offen, 5–10 Min.)</span>
+          </label>
+        </li>
+        <li>
+          <label class="check-item">
+            <input type="checkbox" data-prep="oper" />
+            <span>Oper gegen 16:30 einplanen / absprechen</span>
+          </label>
+        </li>
+        <li>
+          <label class="check-item">
+            <input type="checkbox" data-prep="zeremonie" />
+            <span>Zeremonienleitung einweisen: Landkarte → Gastansprache → Ehegelübde (15–20 Min.) → Oper → Feier</span>
+          </label>
+        </li>
+        <li>
+          <label class="check-item">
+            <input type="checkbox" data-prep="beitraege" />
+            <span>Beiträge-Slots mit Trauzeugen vorab grob befüllen</span>
+          </label>
+        </li>
       </ul>
+      <p class="checklist-hint">Tipp: Haken tippen zum Abhaken.</p>
     </section>
   </main>
 

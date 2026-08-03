@@ -9,7 +9,7 @@ Grober Zeitplan für die freie Trauung in der Scheune (5.&nbsp;September&nbsp;20
 ## Inhalt
 
 - Kurzfassung der Organisation
-- Persönliche Bausteine: Landkarten-Zeremonie, Ehevertrag der Liebe, Zeitkapsel-Stand, Beiträge & Spiele
-- Gastansprache vor der Zeremonie (Person noch offen)
-- Zeitkapsel als Stand neben dem Geschehen (Karten, Stifte, Box – ganztags)
+- Persönliche Bausteine: Landkarten-Zeremonie, Ehegelübde / Ehevertrag, Zeitkapsel-Stand, Beiträge & Spiele
+- Zeremonie ab 16:00: Gastansprache kurz vor dem Ehegelübde (5–10 Min.), Ehegelübde 15–20 Min., Oper ca. 16:30
+- Zeitkapsel als Stand neben dem Geschehen (ganztags)
 - Tageszeitplan bis 03:00

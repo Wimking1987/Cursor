@@ -82,8 +82,11 @@ body {
   position: relative;
   min-height: 220px;
   background:
-    linear-gradient(180deg, rgba(28,27,24,0.15) 0%, rgba(28,27,24,0.55) 100%),
-    radial-gradient(circle at 30% 40%, #c98b86, #8d5a55 60%, #4a3331);
+    linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(80, 55, 70, 0.28) 100%),
+    radial-gradient(circle at 20% 25%, #f7c9d4 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, #d9c7f0 0%, transparent 40%),
+    radial-gradient(circle at 70% 80%, #b8d4c8 0%, transparent 45%),
+    linear-gradient(145deg, #f3d5de 0%, #e7d0ea 42%, #c9dde0 100%);
   color: #fff;
   box-shadow: var(--shadow);
   animation: rise 0.6s ease both;
@@ -106,8 +109,8 @@ body {
   margin: 0;
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: clamp(2.4rem, 10vw, 3rem);
-  line-height: 0.95;
+  font-size: clamp(2.15rem, 9vw, 2.85rem);
+  line-height: 1.02;
   letter-spacing: -0.02em;
 }
 .countdown {
@@ -547,8 +550,8 @@ body {
 
     <header class="hero" id="home">
       <div class="hero-inner">
-        <p class="hero-eyebrow">Wir sagen Ja · Scheune</p>
-        <h1>Hochzeit</h1>
+        <p class="hero-eyebrow">Scheune · 5. September 2026</p>
+        <h1>Hochzeit<br />Sasha und Irina</h1>
         <div class="countdown" aria-label="Countdown zum 5. September 2026">
           <div><strong id="cd-w">–</strong><span>Wochen</span></div>
           <div><strong id="cd-d">–</strong><span>Tage</span></div>
@@ -702,43 +705,64 @@ body {
         <ul class="check-list">
           <li>
             <label class="check-item">
-              <span class="txt"><strong>Landkarte + Stifte / Pins</strong><span>Vorbereitung</span></span>
+              <span class="txt">
+                <strong>Landkarte bereitstellen</strong>
+                <span>Große Landkarte + Stifte / Pins für die Markierungen der Landkarten-Zeremonie.</span>
+              </span>
               <input type="checkbox" data-prep="landkarte" />
             </label>
           </li>
           <li>
             <label class="check-item">
-              <span class="txt"><strong>Ehevertrag / Ehegelübde formulieren</strong><span>Platz für Unterschriften</span></span>
+              <span class="txt">
+                <strong>Ehevertrag der Liebe / Ehegelübde</strong>
+                <span>Humorvoll und persönlich vorformulieren – mit genug Platz für Unterschriften von Paar und Gästen.</span>
+              </span>
               <input type="checkbox" data-prep="ehevertrag" />
             </label>
           </li>
           <li>
             <label class="check-item">
-              <span class="txt"><strong>Zeitkapsel-Stand aufbauen</strong><span>Karten, Box, Plakat</span></span>
+              <span class="txt">
+                <strong>Zeitkapsel-Stand aufbauen</strong>
+                <span>Schöne Karten, Papier, Stifte und Box zum Einwerfen; Hinweis „Öffnung zum 5. oder 10. Jahrestag“; Plakat aufstellen.</span>
+              </span>
               <input type="checkbox" data-prep="zeitkapsel" />
             </label>
           </li>
           <li>
             <label class="check-item">
-              <span class="txt"><strong>Gast für Ansprache festlegen</strong><span>Noch offen · 5–10 Min.</span></span>
+              <span class="txt">
+                <strong>Gast / Trauzeugen für Ansprache</strong>
+                <span>Person festlegen (noch offen), die kurz vor dem Ehegelübde zu allen spricht – ca. 5–10 Minuten.</span>
+              </span>
               <input type="checkbox" data-prep="ansprache" />
             </label>
           </li>
           <li>
             <label class="check-item">
-              <span class="txt"><strong>Oper absprechen</strong><span>ca. 16:30</span></span>
+              <span class="txt">
+                <strong>Oper einplanen</strong>
+                <span>Musikalische Einlage gegen 16:30 absprechen und im Ablauf fixieren.</span>
+              </span>
               <input type="checkbox" data-prep="oper" />
             </label>
           </li>
           <li>
             <label class="check-item">
-              <span class="txt"><strong>Zeremonienleitung einweisen</strong><span>Ablauf briefen</span></span>
+              <span class="txt">
+                <strong>Zeremonienleitung einweisen</strong>
+                <span>Reihenfolge briefen: Landkarte → Gastansprache → Ehegelübde (15–20 Min.) → Oper → Feier.</span>
+              </span>
               <input type="checkbox" data-prep="zeremonie" />
             </label>
           </li>
           <li>
             <label class="check-item">
-              <span class="txt"><strong>Beiträge-Slots befüllen</strong><span>mit Trauzeugen</span></span>
+              <span class="txt">
+                <strong>Beiträge-Slots vorbereiten</strong>
+                <span>Slot 1–3 mit den Trauzeugen grob befüllen (wer spricht / spielt wann).</span>
+              </span>
               <input type="checkbox" data-prep="beitraege" />
             </label>
           </li>

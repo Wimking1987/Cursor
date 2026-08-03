@@ -9,6 +9,7 @@ Grober Zeitplan für die freie Trauung in der Scheune (5.&nbsp;September&nbsp;20
 ## Inhalt
 
 - Kurzfassung der Organisation
-- Drei Wünsche des Bräutigams (Landkarten-Zeremonie, Ehevertrag der Liebe, Beiträge & Spiele)
-- Zeremonie-Ablauf mit beiden Ritualen
+- Persönliche Bausteine: Landkarten-Zeremonie, Ehevertrag der Liebe, Zeitkapsel, Beiträge & Spiele
+- Gastansprache vor der Zeremonie (Person noch offen)
+- Zeremonie-Ablauf inkl. Versiegeln der Zeitkapsel
 - Tageszeitplan bis 03:00

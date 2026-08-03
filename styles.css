@@ -115,7 +115,26 @@ main {
 .panel:nth-of-type(2) { animation-delay: 0.16s; }
 .panel:nth-of-type(3) { animation-delay: 0.24s; }
 .panel:nth-of-type(4) { animation-delay: 0.32s; }
-.panel:nth-of-type(5) { animation-delay: 0.4s; }
+.capsule-hints {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--ink-soft);
+}
+
+.capsule-hints li {
+  margin-bottom: 0.4rem;
+}
+
+.capsule-flow {
+  margin: 1rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  font-weight: 600;
+  color: var(--leaf);
+  font-size: 0.95rem;
+}
+
+.panel:nth-of-type(6) { animation-delay: 0.48s; }
 
 .panel h2 {
   margin: 0 0 0.75rem;
@@ -343,6 +362,10 @@ footer {
     gap: 1.25rem;
   }
 
+  .wish-list-four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .wish-list > li {
     border-top: 0;
     padding: 0;
@@ -353,6 +376,18 @@ footer {
   .wish-list > li:first-child {
     border-left: 0;
     padding-left: 0;
+  }
+
+  .wish-list-four > li:nth-child(3) {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+  }
+
+  .wish-list-four > li:nth-child(4) {
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
   }
 
   .timeline {

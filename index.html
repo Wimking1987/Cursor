@@ -907,6 +907,34 @@ slots.forEach((slot, index) => {
   reveal.observe(slot);
 });
 
+const PREP_KEY = "hochzeit-vorbereitung-checklist";
+const prepBoxes = document.querySelectorAll("[data-prep]");
+
+function loadPrep() {
+  try {
+    return JSON.parse(localStorage.getItem(PREP_KEY) || "{}");
+  } catch (_) {
+    return {};
+  }
+}
+
+function savePrep(state) {
+  try {
+    localStorage.setItem(PREP_KEY, JSON.stringify(state));
+  } catch (_) {
+    /* private mode / blocked storage – checklist still works for the session */
+  }
+}
+
+const prepState = loadPrep();
+prepBoxes.forEach((box) => {
+  const id = box.getAttribute("data-prep");
+  box.checked = Boolean(prepState[id]);
+  box.addEventListener("change", () => {
+    prepState[id] = box.checked;
+    savePrep(prepState);
+  });
+});
   </script>
 </body>
 </html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hochzeit · Tagesablauf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="eyebrow">Scheune · Freie Trauung</p>
+    <h1>Hochzeit</h1>
+    <p class="hero-lead">
+      Grober Tagesablauf · 5.&nbsp;September&nbsp;2026 · 15:00–03:00
+    </p>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="orga-heading">
+      <h2 id="orga-heading">Kurzfassung der Organisation</h2>
+      <p>
+        Die Location ist eine gemietete Scheune. Der Tag startet um 15:00 mit dem Eintreffen
+        der Gäste und endet voraussichtlich gegen 03:00. Fotografie und Fotobox laufen parallel
+        über den gesamten Abend. Fixe Blöcke (Zeremonie, Buffeteröffnungen) bleiben geschützt;
+        dazwischen liegen offene Beiträge-, Spiele- und Partyslots.
+      </p>
+    </section>
+
+    <section class="panel wishes" aria-labelledby="wishes-heading">
+      <h2 id="wishes-heading">Drei Wünsche des Bräutigams</h2>
+      <p class="section-lead">
+        Keine klassische Zeremonie – drei persönliche Bausteine, die den Tag prägen sollen.
+      </p>
+      <ol class="wish-list">
+        <li>
+          <h3>🌍 Landkarten-Zeremonie</h3>
+          <p>
+            Jeder markiert einen Ort, den ihr gemeinsam besuchen möchtet – oder einen Ort,
+            der eure Geschichte geprägt hat. Reisen als gemeinsames Versprechen.
+          </p>
+        </li>
+        <li>
+          <h3>✍️ Ehevertrag der Liebe</h3>
+          <p>
+            Nicht juristisch, sondern humorvoll und persönlich. Versprechen vorlesen,
+            unterschreiben – alle Gäste als Zeuginnen und Zeugen.
+          </p>
+          <ul class="examples">
+            <li>Ich verspreche, nie die letzte Pizza heimlich zu essen.</li>
+            <li>Ich verspreche, dich bei jedem verrückten Projekt zu unterstützen.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>🎤 Beiträge &amp; Spiele der Gäste</h3>
+          <p>
+            Freunde und Familie gestalten den Abend mit: kurze Beiträge, Spiele und Überraschungen
+            in mehreren Slots zwischen Buffet und Party.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="panel ceremony" aria-labelledby="ceremony-heading">
+      <h2 id="ceremony-heading">Ablauf der Zeremonie · ca. 15:30–16:45</h2>
+      <ol class="ceremony-steps">
+        <li>
+          <span class="time">15:30</span>
+          <div>
+            <strong>Begrüßung &amp; Ankommen</strong>
+            <p>Wort der Zeremonienleitung, kurzer Rahmen für den Nachmittag.</p>
+          </div>
+        </li>
+        <li>
+          <span class="time">15:40</span>
+          <div>
+            <strong>🌍 Landkarten-Zeremonie</strong>
+            <p>
+              Paar und Gäste markieren Orte auf einer großen Karte – gemeinsame Träume und
+              Erinnerungsorte werden sichtbar.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="time">16:05</span>
+          <div>
+            <strong>✍️ Ehevertrag der Liebe</strong>
+            <p>
+              Persönliche Versprechen vorlesen und unterschreiben. Anschließend unterschreiben
+              alle Anwesenden als Zeuginnen und Zeugen.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="time">16:30</span>
+          <div>
+            <strong>Abschluss der Zeremonie</strong>
+            <p>Schlussworte, Ringmoment / Symbolhandlung, Applaus – Übergang zu Fotos &amp; Empfang.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="panel timetable" aria-labelledby="timetable-heading">
+      <h2 id="timetable-heading">Tageszeitplan</h2>
+      <p class="section-lead">Zeiten sind grob und können noch verschoben werden. BLOCKED = fixer Block.</p>
+
+      <div class="timeline" role="list">
+        <article class="slot" role="listitem" style="--start: 0; --span: 2;">
+          <div class="slot-meta">
+            <h3>Eintreffen der Gäste</h3>
+            <p class="when">15:00 – 16:00</p>
+            <p class="who">Trauzeugen / Location</p>
+          </div>
+          <div class="bar soft" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot parallel" role="listitem" style="--start: 0; --span: 24;">
+          <div class="slot-meta">
+            <h3>Laufende Hochzeitsfotografie</h3>
+            <p class="when">15:00 – 03:00</p>
+            <p class="who">Fotograf/in</p>
+          </div>
+          <div class="bar parallel-bar" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot parallel" role="listitem" style="--start: 0; --span: 24;">
+          <div class="slot-meta">
+            <h3>Fotobox / Fotoecke</h3>
+            <p class="when">15:00 – 03:00</p>
+            <p class="who">Trauzeugen / Location</p>
+          </div>
+          <div class="bar parallel-bar" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot blocked" role="listitem" style="--start: 1; --span: 2.5;">
+          <div class="slot-meta">
+            <p class="tag">BLOCKED</p>
+            <h3>Zeremonie</h3>
+            <p class="when">15:30 – 16:45</p>
+            <p class="who">Zeremonienleitung / Trauzeugen</p>
+            <p class="note">inkl. Landkarte &amp; Ehevertrag der Liebe</p>
+          </div>
+          <div class="bar solid" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot" role="listitem" style="--start: 4; --span: 2;">
+          <div class="slot-meta">
+            <h3>Beiträge &amp; Spiele – Slot 1</h3>
+            <p class="when">17:00 – 18:00</p>
+            <p class="who">Trauzeugen</p>
+          </div>
+          <div class="bar accent" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot blocked" role="listitem" style="--start: 6; --span: 1;">
+          <div class="slot-meta">
+            <p class="tag">BLOCKED</p>
+            <h3>Buffeteröffnung</h3>
+            <p class="when">18:00 – 18:30</p>
+            <p class="who">Location / Buffet-Team</p>
+          </div>
+          <div class="bar solid" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot" role="listitem" style="--start: 7; --span: 5;">
+          <div class="slot-meta">
+            <h3>Beiträge &amp; Spiele – Slot 2</h3>
+            <p class="when">18:30 – 21:00</p>
+            <p class="who">Trauzeugen</p>
+          </div>
+          <div class="bar accent" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot blocked" role="listitem" style="--start: 12; --span: 1;">
+          <div class="slot-meta">
+            <p class="tag">BLOCKED</p>
+            <h3>Käse- &amp; Dessertbuffet</h3>
+            <p class="when">21:00 – 21:30</p>
+            <p class="who">Location</p>
+          </div>
+          <div class="bar solid" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot" role="listitem" style="--start: 13; --span: 1;">
+          <div class="slot-meta">
+            <h3>Beiträge – Slot 3</h3>
+            <p class="when">21:30 – 22:00</p>
+            <p class="who">Trauzeugen</p>
+          </div>
+          <div class="bar accent" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot" role="listitem" style="--start: 14; --span: 10;">
+          <div class="slot-meta">
+            <h3>Party / Open End</h3>
+            <p class="when">22:00 – 03:00</p>
+            <p class="who">Beiträge &amp; Spiele weiterhin möglich</p>
+          </div>
+          <div class="bar party" aria-hidden="true"></div>
+        </article>
+
+        <article class="slot" role="listitem" style="--start: 14; --span: 10;">
+          <div class="slot-meta">
+            <h3>DJ / Musikbegleitung</h3>
+            <p class="when">22:00 – 03:00</p>
+            <p class="who">DJ</p>
+          </div>
+          <div class="bar music" aria-hidden="true"></div>
+        </article>
+      </div>
+
+      <div class="hour-legend" aria-hidden="true">
+        <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+        <span>21</span><span>22</span><span>23</span><span>00</span><span>01</span><span>02</span><span>03</span>
+      </div>
+    </section>
+
+    <section class="panel checklist" aria-labelledby="prep-heading">
+      <h2 id="prep-heading">Vorbereitung für die Zeremonie</h2>
+      <ul>
+        <li>Große Landkarte + Stifte / Pins für die Markierungen bereitstellen</li>
+        <li>Ehevertrag der Liebe vorformulieren (humorvoll, persönlich) – Platz für Unterschriften</li>
+        <li>Zeremonienleitung kurz einweisen (Reihenfolge Landkarte → Vertrag → Abschluss)</li>
+        <li>Beiträge-Slots mit Trauzeugen vorab grob befüllen</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Entwurf · Zeiten noch flexibel · Stand Planung</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

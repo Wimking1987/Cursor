@@ -16,6 +16,7 @@ Prototypenentwicklungs‑Service**.
 
 | Datei | Inhalt |
 |-------|--------|
+| [`../praesentation.html`](../praesentation.html) | **Klickbare Präsentation** — schneller Überblick mit Navigation, Finanzen und Fahrplan. Einfach im Browser öffnen. |
 | [`01-geschaeftsplan.md`](01-geschaeftsplan.md) | Der vollständige Plan: Zusammenfassung, Markt, Produkte, Betrieb, Marketing, Risiken, Recht. |
 | [`02-finanzmodell.md`](02-finanzmodell.md) | Startinvestition, Kostenstruktur, Preisgestaltung, 12‑Monats‑Umsatzverlauf und der **Weg zur Profitabilität innerhalb eines Jahres**. |
 | [`03-12-monats-fahrplan.md`](03-12-monats-fahrplan.md) | Ein konkreter Monat‑für‑Monat‑Aktionsplan mit Meilensteinen und Kennzahlen. |

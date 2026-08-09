@@ -16,6 +16,8 @@ into a **print‑on‑demand + prototype‑development service**.
 
 | File | What it covers |
 |------|----------------|
+| [`praesentation.html`](praesentation.html) | **Clickable presentation** (German) — open in a browser for a fast, navigable overview. |
+| [`de/`](de/README.md) | Full German markdown plan (primary). |
 | [`01-business-plan.md`](01-business-plan.md) | The full narrative plan: summary, market, products, operations, marketing, risk, legal. |
 | [`02-financial-model.md`](02-financial-model.md) | Start‑up investment, cost structure, pricing, a 12‑month revenue ramp and the **path to profitability within one year**. |
 | [`03-12-month-roadmap.md`](03-12-month-roadmap.md) | A concrete, month‑by‑month action plan with milestones and KPIs. |

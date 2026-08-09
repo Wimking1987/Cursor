@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Businessplan — 3D-gedruckte Oldtimer-Ersatzteile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #14181f;
+      --ink-soft: #2a3340;
+      --muted: #5c6775;
+      --line: rgba(20, 24, 31, 0.12);
+      --paper: #f3f0ea;
+      --paper-2: #e8e3d8;
+      --steel: #1f4d5c;
+      --steel-bright: #2a6b7c;
+      --amber: #c45c26;
+      --amber-soft: #e8a06a;
+      --white: #fbfaf7;
+      --ok: #2f6b4f;
+      --shadow: 0 18px 50px rgba(20, 24, 31, 0.14);
+      --radius: 18px;
+      --font-display: "Instrument Serif", Georgia, serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(42, 107, 124, 0.18), transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, rgba(196, 92, 38, 0.14), transparent 50%),
+        linear-gradient(160deg, #efeae1 0%, #e4ddd1 45%, #d9e2e4 100%);
+      color: var(--ink);
+      font-family: var(--font-body);
+      overflow: hidden;
+    }
+
+    button {
+      font: inherit;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .app {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 18px 14px;
+      gap: 12px;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 48px;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      min-width: 0;
+    }
+    .brand-mark {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .brand-sub {
+      color: var(--muted);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(251, 250, 247, 0.72);
+      backdrop-filter: blur(8px);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .chip:hover { background: var(--white); transform: translateY(-1px); }
+    .chip.primary {
+      background: var(--steel);
+      color: var(--white);
+      border-color: transparent;
+    }
+    .chip.primary:hover { background: var(--steel-bright); }
+
+    /* Stage */
+    .stage {
+      position: relative;
+      border-radius: calc(var(--radius) + 4px);
+      background:
+        linear-gradient(180deg, rgba(251,250,247,0.92), rgba(243,240,234,0.88)),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(20,24,31,0.015) 0 8px,
+          transparent 8px 16px
+        );
+      border: 1px solid rgba(20, 24, 31, 0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: clamp(22px, 4vw, 48px);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(14px) scale(0.985);
+      transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+      overflow: auto;
+      display: grid;
+      align-content: start;
+      gap: 18px;
+    }
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      z-index: 1;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--steel);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .kicker::before {
+      content: "";
+      width: 18px;
+      height: 2px;
+      background: var(--amber);
+      border-radius: 2px;
+    }
+
+    h1, h2, h3 { margin: 0; font-weight: 500; }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      max-width: 22ch;
+    }
+    .lede {
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 58ch;
+    }
+    .muted { color: var(--muted); }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: end;
+      min-height: min(58vh, 520px);
+    }
+    .hero-side {
+      display: grid;
+      gap: 12px;
+    }
+    .stat-card {
+      background: var(--ink);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: grid;
+      gap: 4px;
+    }
+    .stat-card strong {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 500;
+    }
+    .stat-card span { color: rgba(251,250,247,0.72); font-size: 0.9rem; }
+    .stat-card.accent { background: var(--steel); }
+    .stat-card.warm { background: var(--amber); }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(20,24,31,0.18);
+    }
+    .btn-primary:hover { background: #000; }
+    .btn-ghost {
+      background: rgba(251,250,247,0.7);
+      border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { background: var(--white); }
+
+    /* Overview cards */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .nav-card {
+      text-align: left;
+      border: 1px solid var(--line);
+      background: rgba(251,250,247,0.75);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      display: grid;
+      gap: 8px;
+      min-height: 140px;
+      transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+    .nav-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(31, 77, 92, 0.35);
+      box-shadow: 0 14px 28px rgba(20,24,31,0.08);
+      background: var(--white);
+    }
+    .nav-card .num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      text-transform: uppercase;
+    }
+    .nav-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      line-height: 1.15;
+    }
+    .nav-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .nav-card .go {
+      margin-top: auto;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--steel);
+    }
+
+    /* Content layouts */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .triple {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      background: rgba(251,250,247,0.72);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+    .panel h3 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      line-height: 1.15;
+    }
+    .panel p, .panel li {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .panel ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 6px;
+    }
+    .panel .tag {
+      justify-self: start;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--steel);
+      background: rgba(31, 77, 92, 0.1);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+    .panel.dark {
+      background: var(--ink);
+      color: var(--white);
+      border-color: transparent;
+    }
+    .panel.dark p, .panel.dark li { color: rgba(251,250,247,0.78); }
+    .panel.steel {
+      background: linear-gradient(160deg, var(--steel), #163842);
+      color: var(--white);
+      border-color: transparent;
+    }
+    .panel.steel p, .panel.steel li { color: rgba(251,250,247,0.8); }
+
+    .equip-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .equip {
+      border-radius: var(--radius);
+      padding: 18px;
+      min-height: 180px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .equip::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .equip:nth-child(1) { background: linear-gradient(145deg, #1f4d5c, #0f2c35); }
+    .equip:nth-child(2) { background: linear-gradient(145deg, #2a3340, #14181f); }
+    .equip:nth-child(3) { background: linear-gradient(145deg, #8f4520, #c45c26); }
+    .equip strong {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+    .equip span, .equip p {
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      color: rgba(251,250,247,0.78);
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
+    /* Finance */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .kpi {
+      background: rgba(251,250,247,0.8);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      display: grid;
+      gap: 2px;
+    }
+    .kpi b {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 500;
+      color: var(--steel);
+    }
+    .kpi span { font-size: 0.82rem; color: var(--muted); line-height: 1.3; }
+
+    .bars {
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 56px 1fr 70px;
+      gap: 10px;
+      align-items: center;
+      font-size: 0.82rem;
+    }
+    .bar-track {
+      height: 10px;
+      background: rgba(20,24,31,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--steel), var(--amber));
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+    }
+    .slide.active .bar-fill { transform: scaleX(1); }
+    .bar-row .val { text-align: right; font-weight: 600; color: var(--ink-soft); }
+
+    /* Roadmap */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .phase {
+      border: 1px solid var(--line);
+      background: rgba(251,250,247,0.78);
+      border-radius: 14px;
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+      text-align: left;
+      transition: transform 0.15s, border-color 0.15s, background 0.15s;
+      min-height: 210px;
+    }
+    .phase:hover {
+      transform: translateY(-2px);
+      border-color: rgba(196, 92, 38, 0.4);
+      background: var(--white);
+    }
+    .phase .when {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    .phase h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      line-height: 1.15;
+    }
+    .phase p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .phase .kpi-mini {
+      margin-top: auto;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--steel);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 8px;
+    }
+    .check {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(251,250,247,0.78);
+      border: 1px solid var(--line);
+    }
+    .check i {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(47, 107, 79, 0.12);
+      color: var(--ok);
+      display: grid;
+      place-items: center;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-top: 1px;
+    }
+    .check b { display: block; margin-bottom: 2px; }
+    .check span { color: var(--muted); font-size: 0.9rem; line-height: 1.35; }
+
+    /* Footer / nav */
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+    }
+    .progress {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(20,24,31,0.18);
+      transition: transform 0.15s, background 0.15s, width 0.15s;
+    }
+    .dot.active {
+      background: var(--ink);
+      width: 22px;
+      border-radius: 999px;
+    }
+    .dot:hover { background: var(--steel); transform: scale(1.15); }
+
+    .nav-btns {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(251,250,247,0.8);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .icon-btn:hover:not(:disabled) {
+      background: var(--white);
+      transform: translateY(-1px);
+    }
+    .icon-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .slide-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* Modal for phase detail */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20,24,31,0.45);
+      backdrop-filter: blur(4px);
+      display: none;
+      place-items: center;
+      z-index: 20;
+      padding: 20px;
+    }
+    .modal-backdrop.open { display: grid; }
+    .modal {
+      width: min(560px, 100%);
+      background: var(--paper);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 12px;
+      max-height: 85vh;
+      overflow: auto;
+      animation: pop 0.22s ease;
+    }
+    @keyframes pop {
+      from { transform: translateY(10px) scale(0.98); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+    .modal h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+    }
+    .modal .close {
+      justify-self: end;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(20,24,31,0.06);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .split,
+      .triple,
+      .overview-grid,
+      .equip-row,
+      .kpi-strip,
+      .timeline {
+        grid-template-columns: 1fr 1fr;
+      }
+      .timeline { grid-template-columns: 1fr 1fr; }
+      .brand-sub { display: none; }
+    }
+    @media (max-width: 680px) {
+      body { overflow: auto; }
+      .app { height: auto; min-height: 100%; padding: 12px; }
+      .stage { min-height: 72vh; }
+      .slide { position: relative; inset: auto; display: none; padding: 20px; }
+      .slide.active { display: grid; }
+      .hero-grid,
+      .split,
+      .triple,
+      .overview-grid,
+      .equip-row,
+      .kpi-strip,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+      .footer { grid-template-columns: 1fr; justify-items: center; }
+      .nav-btns { justify-content: center; }
+      .slide-meta { display: none; }
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">OldtimerLab</div>
+        <div class="brand-sub">Businessplan · 3D-gedruckte Ersatzteile &amp; Print-on-Demand</div>
+      </div>
+      <div class="top-actions">
+        <button class="chip" type="button" data-go="1">Übersicht</button>
+        <button class="chip primary" type="button" data-go="6">Weg zum Gewinn</button>
+      </div>
+    </header>
+
+    <main class="stage" id="stage" aria-live="polite">
+      <!-- 0 Cover -->
+      <section class="slide active" data-slide="0" aria-label="Titelseite">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker">Businessplan · Präsentation</div>
+            <h1>3D‑gedruckte Oldtimer‑Ersatzteile — klar, machbar, profitabel.</h1>
+            <p class="lede" style="margin: 14px 0 0;">
+              Scan → CAD → Druck → Veredelung. Mit Formlabs Form&nbsp;3L, Bambu Lab X1 Carbon (X1C)
+              und 3D‑Scanner — von fehlenden Innenraumteilen bis Print‑on‑Demand &amp; Prototyping.
+            </p>
+            <div class="cta-row">
+              <button class="btn btn-primary" type="button" data-go="1">Zur Übersicht →</button>
+              <button class="btn btn-ghost" type="button" data-go="8">Sofort starten</button>
+            </div>
+            <p class="hint" style="margin-top: 14px;">Klicken · Pfeiltasten · Übersichtskarten</p>
+          </div>
+          <div class="hero-side">
+            <div class="stat-card accent">
+              <strong>Monat 3</strong>
+              <span>Operativer Break‑even</span>
+            </div>
+            <div class="stat-card warm">
+              <strong>Monat 6–7</strong>
+              <span>Gründergehalt (2.500 €) gedeckt</span>
+            </div>
+            <div class="stat-card">
+              <strong>~12 Monate</strong>
+              <span>Pfad zur Profitabilität</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1 Overview -->
+      <section class="slide" data-slide="1" aria-label="Übersicht">
+        <div>
+          <div class="kicker">Klickbare Übersicht</div>
+          <h2>Wo stehen wir — und wohin geht’s?</h2>
+          <p class="lede">Wähle einen Bereich. Alles ist aus dem detaillierten Businessplan verdichtet.</p>
+        </div>
+        <div class="overview-grid">
+          <button class="nav-card" type="button" data-go="2">
+            <span class="num">01 · Angebot</span>
+            <h3>Was wir anbieten</h3>
+            <p>Katalogteile, Print‑on‑Demand und Prototypenentwicklung — drei Umsatzquellen.</p>
+            <span class="go">Öffnen →</span>
+          </button>
+          <button class="nav-card" type="button" data-go="3">
+            <span class="num">02 · Problem</span>
+            <h3>Warum das funktioniert</h3>
+            <p>Oldtimer‑Teile verschwinden vom Markt. Wir machen sie wieder verfügbar.</p>
+            <span class="go">Öffnen →</span>
+          </button>
+          <button class="nav-card" type="button" data-go="4">
+            <span class="num">03 · Technik</span>
+            <h3>Maschinen &amp; Stärken</h3>
+            <p>Form 3L · X1 Carbon · 3D‑Scanner — Detail, Funktion und Passgenauigkeit.</p>
+            <span class="go">Öffnen →</span>
+          </button>
+          <button class="nav-card" type="button" data-go="5">
+            <span class="num">04 · Markt</span>
+            <h3>Kunden &amp; Positionierung</h3>
+            <p>Privatbesitzer, Werkstätten, Clubs — und wo wir uns klar abgrenzen.</p>
+            <span class="go">Öffnen →</span>
+          </button>
+          <button class="nav-card" type="button" data-go="6">
+            <span class="num">05 · Finanzen</span>
+            <h3>Weg zum Gewinn</h3>
+            <p>6.000 € frisches Kapital · Break‑even Monat 3 · Profit im ersten Jahr.</p>
+            <span class="go">Öffnen →</span>
+          </button>
+          <button class="nav-card" type="button" data-go="7">
+            <span class="num">06 · Fahrplan</span>
+            <h3>12 Monate Aktion</h3>
+            <p>Phase für Phase mit Meilensteinen — anklickbar für Details.</p>
+            <span class="go">Öffnen →</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 2 Offer -->
+      <section class="slide" data-slide="2" aria-label="Angebot">
+        <div>
+          <div class="kicker">Was wir anbieten</div>
+          <h2>Drei Wege, Umsatz zu machen.</h2>
+          <p class="lede">Nicht nur „Teile drucken“ — ein integrierter Service von Scan bis fertigem Teil.</p>
+        </div>
+        <div class="triple">
+          <article class="panel steel">
+            <span class="tag" style="background:rgba(255,255,255,0.14);color:#fff;">Höchste Wiederholung</span>
+            <h3>Reproduktions‑Katalog</h3>
+            <p>Fertig bestellbare Oldtimer‑Innenraum‑ &amp; Zierteile. Einmal modelliert, immer wieder verkaufbar — ohne Lagerhüter (Druck on demand).</p>
+            <ul>
+              <li>Lüftungsdüsen, Knöpfe, Clips, Blenden …</li>
+              <li>Zielmarge 60–75&nbsp;%</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <span class="tag">Volumen &amp; stetig</span>
+            <h3>Print‑on‑Demand</h3>
+            <p>Kunde lädt STL/STEP hoch oder schickt ein Muster — wir beraten, drucken, veredeln, versenden. Auch außerhalb Automotive.</p>
+            <ul>
+              <li>Mindestbestellwert 25&nbsp;€</li>
+              <li>Diversifiziert die Nachfrage</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <span class="tag">Höchster Stundenwert</span>
+            <h3>Prototyping &amp; Reverse Engineering</h3>
+            <p>Scan‑to‑CAD, Konstruktion, iterative Prototypen für Restauratoren und Kleinserien.</p>
+            <ul>
+              <li>60–90&nbsp;€/h</li>
+              <li>Baut Reputation &amp; Dateibibliothek</li>
+            </ul>
+          </article>
+        </div>
+        <div class="panel dark">
+          <h3>Der Kern‑Workflow</h3>
+          <p><strong>Muster / Referenz → 3D‑Scan / CAD → druckoptimieren → FDM oder SLA → veredeln → Passprobe → Versand</strong> — und die Datei bleibt im Archiv als wiederverkaufbarer Vermögenswert.</p>
+        </div>
+      </section>
+
+      <!-- 3 Problem -->
+      <section class="slide" data-slide="3" aria-label="Problem und Lösung">
+        <div>
+          <div class="kicker">Problem &amp; Lösung</div>
+          <h2>Originalteile verschwinden. Wir bringen sie zurück.</h2>
+        </div>
+        <div class="split">
+          <article class="panel">
+            <h3>Das Problem</h3>
+            <ul>
+              <li>Bei Fahrzeugen 25+ Jahre oft keine Neuteile mehr — besonders Innenraum &amp; Zier.</li>
+              <li>Gebrauchtmarkt: rar, teuer, brüchig.</li>
+              <li>Spritzguss lohnt sich für Kleinserien nicht.</li>
+              <li>Besitzer zahlen für Korrektheit und Originalität.</li>
+            </ul>
+          </article>
+          <article class="panel steel">
+            <h3>Unsere Lösung</h3>
+            <ul>
+              <li>Digitale Reproduktion mit professionellem Finish.</li>
+              <li>Passgenau durch Scanner + CAD.</li>
+              <li>Nur nicht sicherheitsrelevante Teile am Start → niedriges Risiko.</li>
+              <li>Jede Datei wird zum wiederkehrenden Umsatz.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="panel">
+          <h3>Positionierung</h3>
+          <p><em>„Das richtige Teil — passgenau gefertigt und veredelt wie das Original, selbst wenn es sonst niemand liefern kann.“</em></p>
+        </div>
+      </section>
+
+      <!-- 4 Equipment -->
+      <section class="slide" data-slide="4" aria-label="Ausrüstung">
+        <div>
+          <div class="kicker">Ausrüstung</div>
+          <h2>Drei Anlagen, eine starke Kombi.</h2>
+          <p class="lede">SLA für Detailtreue · FDM für Funktion &amp; Kosten · Scanner für Passgenauigkeit.</p>
+        </div>
+        <div class="equip-row">
+          <article class="equip">
+            <span>Harz / SLA</span>
+            <strong>Formlabs Form 3L</strong>
+            <p>Großformat, feine Details, glatte Oberflächen — ideale Zierteile &amp; komplexe Geometrien.</p>
+          </article>
+          <article class="equip">
+            <span>FDM</span>
+            <strong>Bambu Lab X1 Carbon</strong>
+            <p>Schnell, zäh, ASA/PETG/PA‑CF — Halterungen, Clips, Düsen, UV‑belastete Funktionsteile.</p>
+          </article>
+          <article class="equip">
+            <span>Erfassung</span>
+            <strong>3D‑Scanner</strong>
+            <p>Reverse Engineering vom Original — damit Reproduktionen wirklich passen.</p>
+          </article>
+        </div>
+        <div class="split">
+          <article class="panel">
+            <h3>Bereits vorhanden ≈ 18.000 €</h3>
+            <p>Form 3L, Wash/Cure, X1C, Scanner — schweres Kapital ist schon investiert. Frischer Startbedarf nur ~6.000 €.</p>
+          </article>
+          <article class="panel">
+            <h3>Differenzierung: Veredelung</h3>
+            <p>Schleifen, grundieren, lackieren, Narbung, Einfärben, Montage — Rohdrucke reichen Restauratoren nicht. Finish ist unser Burggraben.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 5 Market -->
+      <section class="slide" data-slide="5" aria-label="Markt">
+        <div>
+          <div class="kicker">Markt &amp; Kunden</div>
+          <h2>Wo Nachfrage schon wartet.</h2>
+        </div>
+        <div class="triple">
+          <article class="panel">
+            <span class="tag">B2C</span>
+            <h3>Privatbesitzer</h3>
+            <p>Fehlendes/kaputtes Teil, hohe Zahlungsbereitschaft für korrekte Optik und Passform.</p>
+          </article>
+          <article class="panel">
+            <span class="tag">B2B</span>
+            <h3>Restaurierungswerkstätten</h3>
+            <p>Wiederkehrende Partner: „Teile, die wir nicht finden“ — planbarer Umsatz.</p>
+          </article>
+          <article class="panel">
+            <span class="tag">Community</span>
+            <h3>Clubs &amp; Foren</h3>
+            <p>Konzentrierte Nachfrage nach denselben Problemteilen — ideal für den Katalog.</p>
+          </article>
+        </div>
+        <div class="split">
+          <article class="panel dark">
+            <h3>Marketing‑Prinzip</h3>
+            <p>Dorthin gehen, wo Oldtimer‑Besitzer schon sind: Markenforen, Clubs, Instagram/YouTube‑Transformationsvideos (Scan → Druck → Passform).</p>
+          </article>
+          <article class="panel">
+            <h3>Rechtlicher Startkorridor</h3>
+            <ul>
+              <li>Keine sicherheitsrelevanten Teile (Bremsen, Lenkung …)</li>
+              <li>Keine Markenlogos / geschützte Designs ohne Freigabe</li>
+              <li>Als Reproduktion kennzeichnen · Haftpflicht · klare AGB</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- 6 Finance -->
+      <section class="slide" data-slide="6" aria-label="Finanzen">
+        <div>
+          <div class="kicker">Finanzen</div>
+          <h2>Weg zum Gewinn in einem Jahr.</h2>
+          <p class="lede">Konservative Planungsannahmen in EUR · DACH. Mit echten Aufträgen monatlich nachziehen.</p>
+        </div>
+        <div class="kpi-strip">
+          <div class="kpi"><b>~6.000 €</b><span>Frisches Kapital zum Start</span></div>
+          <div class="kpi"><b>1.100 €</b><span>Fixkosten / Monat</span></div>
+          <div class="kpi"><b>~1.470 €</b><span>Umsatz für Break‑even</span></div>
+          <div class="kpi"><b>75 %</b><span>Ziel‑Bruttomarge (Mix)</span></div>
+        </div>
+        <div class="split">
+          <article class="panel">
+            <h3>Umsatzhochlauf (Jahr 1)</h3>
+            <div class="bars" aria-hidden="true">
+              <div class="bar-row"><span>M1</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="val">600 €</span></div>
+              <div class="bar-row"><span>M3</span><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><span class="val">2.000 €</span></div>
+              <div class="bar-row"><span>M6</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="val">4.700 €</span></div>
+              <div class="bar-row"><span>M9</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="val">7.300 €</span></div>
+              <div class="bar-row"><span>M12</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="val">9.300 €</span></div>
+            </div>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem;">Jahresumsatz ≈ 60.600 € · kumuliertes EBIT ≈ +32.250 € (vor Gründergehalt)</p>
+          </article>
+          <article class="panel steel">
+            <h3>Meilensteine</h3>
+            <ul>
+              <li><strong>Monat 3</strong> — operativ profitabel (Break‑even)</li>
+              <li><strong>Monat 6–7</strong> — 2.500 € Gründergehalt gedeckt</li>
+              <li><strong>~Monat 7</strong> — 6.000 € frisches Kapital zurück</li>
+              <li><strong>Monat 11–14</strong> — volle Amortisation inkl. Ausrüstung (~24.000 €)</li>
+            </ul>
+            <p style="margin-top:8px;">Schnellste Hebel: von zu Hause starten · Prototyping ab Woche 1 abrechnen · jeden Auftrag in ein Katalogteil verwandeln.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 7 Roadmap -->
+      <section class="slide" data-slide="7" aria-label="Fahrplan">
+        <div>
+          <div class="kicker">12‑Monats‑Fahrplan</div>
+          <h2>Klick eine Phase für Details.</h2>
+          <p class="lede">Von der Gewerbeanmeldung bis zur Dateibibliothek mit 50+ Teilen.</p>
+        </div>
+        <div class="timeline">
+          <button class="phase" type="button" data-phase="1">
+            <span class="when">Monate 1–2</span>
+            <h3>Aufbau &amp; erster Umsatz</h3>
+            <p>Rechtlich starten, Qualität sichern, ersten Auftrag liefern.</p>
+            <span class="kpi-mini">KPI: 1. bezahlter Job ≤ Tag 30</span>
+          </button>
+          <button class="phase" type="button" data-phase="2">
+            <span class="when">Monate 3–4</span>
+            <h3>Katalog &amp; Nachfrage</h3>
+            <p>10–20 bewährte Teile listen, Break‑even knacken.</p>
+            <span class="kpi-mini">KPI: Umsatz ≥ 1.500 €/Mon.</span>
+          </button>
+          <button class="phase" type="button" data-phase="3">
+            <span class="when">Monate 5–7</span>
+            <h3>Kanäle &amp; Marge</h3>
+            <p>B2B &amp; Clubs, Gehalt aus Gewinn finanzieren.</p>
+            <span class="kpi-mini">KPI: 2.500 € Gehalt gedeckt</span>
+          </button>
+          <button class="phase" type="button" data-phase="4">
+            <span class="when">Monate 8–10</span>
+            <h3>Skalieren</h3>
+            <p>Erste Teilzeitkraft, Fulfilment systematisieren.</p>
+            <span class="kpi-mini">KPI: 6.500–8.000 €/Mon.</span>
+          </button>
+          <button class="phase" type="button" data-phase="5">
+            <span class="when">Monate 11–12</span>
+            <h3>Konsolidieren</h3>
+            <p>Amortisation, Rechtsform, Jahr‑2‑Fokus wählen.</p>
+            <span class="kpi-mini">KPI: 50+ Dateien in Bibliothek</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 8 Start -->
+      <section class="slide" data-slide="8" aria-label="Sofort starten">
+        <div>
+          <div class="kicker">Nächste Schritte</div>
+          <h2>Hier kannst du sofort ansetzen.</h2>
+          <p class="lede">Die schnellsten Hebel, um aus dem Plan Realität zu machen — und Anpassungen zu finden.</p>
+        </div>
+        <div class="split">
+          <div class="checklist">
+            <div class="check"><i>✓</i><div><b>Gewerbe + Versicherung + AGB</b><span>Nur nicht sicherheitsrelevante Teile; Reproduktion kennzeichnen.</span></div></div>
+            <div class="check"><i>✓</i><div><b>Top‑15 Problemteile listen</b><span>Aus Foren/Clubs der Startmarke — Katalog um echte Nachfrage bauen.</span></div></div>
+            <div class="check"><i>✓</i><div><b>Veredelung &amp; 5 Testteile</b><span>Scan→Druck→Passform dokumentieren und fotografieren.</span></div></div>
+            <div class="check"><i>✓</i><div><b>Einfacher Web‑Auftritt + Quote‑Form</b><span>Plus Foren‑Post mit starkem Vorher/Nachher.</span></div></div>
+            <div class="check"><i>✓</i><div><b>Erste 10 Aufträge kalkulieren</b><span>Material + Zeit erfassen → 75‑%‑Marge‑Annahme prüfen.</span></div></div>
+          </div>
+          <article class="panel steel" style="align-content:center; gap:14px;">
+            <h3>Vollständige Unterlagen</h3>
+            <p>Detailpläne zum Nachlesen und Anpassen:</p>
+            <ul>
+              <li><code>business-plan/de/01-geschaeftsplan.md</code></li>
+              <li><code>business-plan/de/02-finanzmodell.md</code></li>
+              <li><code>business-plan/de/03-12-monats-fahrplan.md</code></li>
+            </ul>
+            <div class="cta-row">
+              <button class="btn btn-primary" type="button" data-go="1" style="background:#fff;color:var(--ink);">Zurück zur Übersicht</button>
+              <button class="btn btn-ghost" type="button" data-go="0" style="border-color:rgba(255,255,255,0.25);color:#fff;background:rgba(255,255,255,0.08);">Zur Titelseite</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="slide-meta"><span id="slideLabel">1 / 9 · Titelseite</span></div>
+      <div class="progress" id="progress" aria-label="Foliennavigation"></div>
+      <div class="nav-btns">
+        <button class="icon-btn" id="prevBtn" type="button" aria-label="Vorherige Folie">←</button>
+        <button class="icon-btn" id="nextBtn" type="button" aria-label="Nächste Folie">→</button>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="close" type="button" id="modalClose" aria-label="Schließen">×</button>
+      <div class="kicker" id="modalWhen"></div>
+      <h3 id="modalTitle"></h3>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const titles = [
+      "Titelseite",
+      "Übersicht",
+      "Angebot",
+      "Problem & Lösung",
+      "Ausrüstung",
+      "Markt",
+      "Finanzen",
+      "Fahrplan",
+      "Sofort starten"
+    ];
+
+    const phases = {
+      1: {
+        when: "Monate 1–2",
+        title: "Aufbau & erster Umsatz",
+        html: `
+          <p><strong>Ziel:</strong> Rechtlich betriebsbereit, verkaufsfähige Qualität, erste bezahlte Aufträge.</p>
+          <ul>
+            <li>Gewerbe anmelden, Kleinunternehmer vs. Regelbesteuerung klären</li>
+            <li>Betriebs-/Produkthaftpflicht + AGB</li>
+            <li>Veredelungsstation fertigstellen</li>
+            <li>Materialprofile: ASA/PETG/PA‑CF + 2 Harze</li>
+            <li>Workflow an 3–5 Testteilen dokumentieren</li>
+            <li>Webseite + Angebotsformular; eBay/Etsy + POD‑Plattform</li>
+            <li>In 3–5 Markenforen mit Vorher/Nachher starten</li>
+          </ul>
+          <p><strong>KPI:</strong> Erster bezahlter Auftrag ≤ Tag 30 · Angebote &lt; 24 h</p>`
+      },
+      2: {
+        when: "Monate 3–4",
+        title: "Katalog & Nachfrage",
+        html: `
+          <p><strong>Ziel:</strong> Einzelaufträge zu Katalogprodukten machen; operativen Break‑even erreichen.</p>
+          <ul>
+            <li>Top‑15 meistgefragte Teile aus Clubs/Foren</li>
+            <li>Startkatalog 10–20 Teile mit Fotos &amp; Preisen</li>
+            <li>Prototyping/Scan‑to‑CAD mit 60–90 €/h aktiv verkaufen</li>
+            <li>Wöchentlich 1 Transformations‑Video/Post</li>
+          </ul>
+          <p><strong>KPI:</strong> ≥ 10 Katalogteile · Umsatz ≥ 1.500 €/Mon. · erster Wiederholkunde</p>`
+      },
+      3: {
+        when: "Monate 5–7",
+        title: "Kanäle & Marge",
+        html: `
+          <p><strong>Ziel:</strong> Alle drei Umsatzströme hochfahren; Lebensunterhalt aus dem Betrieb.</p>
+          <ul>
+            <li>1–2 Restaurierungswerkstätten als B2B gewinnen</li>
+            <li>1–2 Club‑Partnerschaften</li>
+            <li>+5–8 Katalogteile pro Monat</li>
+            <li>Marge optimieren: weniger Fehldrucke, Vorlagen, Nachtdruck</li>
+          </ul>
+          <p><strong>KPI:</strong> 4.000–5.600 €/Mon. · Gründergehalt 2.500 € gedeckt · Katalog ≥ 30</p>`
+      },
+      4: {
+        when: "Monate 8–10",
+        title: "Skalieren",
+        html: `
+          <p><strong>Ziel:</strong> Gründerzeit‑Engpass aufbrechen, Wachstum stabilisieren.</p>
+          <ul>
+            <li>Erste Teilzeitkraft (Veredelung/Verpackung)</li>
+            <li>Optional zweiter FDM‑Drucker</li>
+            <li>Fulfilment‑SOPs &amp; Versand systematisieren</li>
+            <li>POD über Automotive hinaus ausweiten</li>
+          </ul>
+          <p><strong>KPI:</strong> 6.500–8.000 €/Mon. · frisches Kapital zurück · Katalog ≥ 45</p>`
+      },
+      5: {
+        when: "Monate 11–12",
+        title: "Konsolidieren & Jahr 2",
+        html: `
+          <p><strong>Ziel:</strong> Profitabilität festigen und Wachstumspfad wählen.</p>
+          <ul>
+            <li>Jahres‑GuV mit dem Modell abgleichen</li>
+            <li>UG/GmbH prüfen</li>
+            <li>Jahr‑2‑Fokus: Marken vertiefen, Lizenz/Partnerschaft oder POD ausbauen</li>
+            <li>Dateibibliothek sichern — Kern‑Vermögenswert</li>
+          </ul>
+          <p><strong>KPI:</strong> 8.700–9.300 €+/Mon. · profitabel nach Gehalt · 50+ Dateien · Jahr‑2‑Plan</p>`
+      }
+    };
+
+    const slides = [...document.querySelectorAll(".slide")];
+    const progress = document.getElementById("progress");
+    const slideLabel = document.getElementById("slideLabel");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const modal = document.getElementById("modal");
+    let index = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "dot" + (i === 0 ? " active" : "");
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Folie ${i + 1}: ${titles[i]}`);
+      dot.addEventListener("click", () => go(i));
+      progress.appendChild(dot);
+    });
+
+    function go(i) {
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, n) => s.classList.toggle("active", n === index));
+      [...progress.children].forEach((d, n) => d.classList.toggle("active", n === index));
+      slideLabel.textContent = `${index + 1} / ${slides.length} · ${titles[index]}`;
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === slides.length - 1;
+      // restart bar animation
+      if (index === 6) {
+        document.querySelectorAll(".bar-fill").forEach((el) => {
+          el.style.transform = "scaleX(0)";
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => { el.style.transform = "scaleX(1)"; });
+          });
+        });
+      }
+      history.replaceState(null, "", `#${index}`);
+    }
+
+    function openPhase(id) {
+      const p = phases[id];
+      if (!p) return;
+      document.getElementById("modalWhen").textContent = p.when;
+      document.getElementById("modalTitle").textContent = p.title;
+      document.getElementById("modalBody").innerHTML = p.html;
+      modal.classList.add("open");
+    }
+
+    document.getElementById("modalClose").addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("open"); });
+
+    prevBtn.addEventListener("click", () => go(index - 1));
+    nextBtn.addEventListener("click", () => go(index + 1));
+
+    document.addEventListener("keydown", (e) => {
+      if (modal.classList.contains("open")) {
+        if (e.key === "Escape") modal.classList.remove("open");
+        return;
+      }
+      if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); go(index + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(index - 1); }
+      if (e.key === "Home") go(0);
+      if (e.key === "End") go(slides.length - 1);
+    });
+
+    document.querySelectorAll("[data-go]").forEach((el) => {
+      el.addEventListener("click", () => go(Number(el.getAttribute("data-go"))));
+    });
+    document.querySelectorAll("[data-phase]").forEach((el) => {
+      el.addEventListener("click", () => openPhase(el.getAttribute("data-phase")));
+    });
+
+    // Touch swipe
+    let touchX = null;
+    document.getElementById("stage").addEventListener("touchstart", (e) => {
+      touchX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    document.getElementById("stage").addEventListener("touchend", (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].screenX - touchX;
+      if (Math.abs(dx) > 50) go(index + (dx < 0 ? 1 : -1));
+      touchX = null;
+    }, { passive: true });
+
+    const hash = Number((location.hash || "#0").slice(1));
+    go(Number.isFinite(hash) ? hash : 0);
+  </script>
+</body>
+</html>

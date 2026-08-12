@@ -175,3 +175,47 @@ der Umsatz verstärkt, (4) produktive Gründerstunden kompromisslos schützen.
 
 Aktualisiere dieses Modell monatlich mit Ist‑Werten — ein Businessplan ist ein
 lebendes Dokument, keine einmalige Übung.
+
+---
+
+## 10. Anpassung CH / Partnerschaft (aktueller Stand)
+
+> Der ursprüngliche Modellteil oben bleibt als **Referenz‑Hochlauf** erhalten.
+> Für die konkrete Zusammenarbeit gilt zusätzlich:
+
+### 10.1 Rahmen
+
+| Punkt | Festlegung |
+|-------|------------|
+| Währung / Sitzziel | **CHF**, Ziel **schweizerische GmbH** |
+| Arbeitseinsatz je Partner | **20 Stunden / Monat** (~3 Tage) |
+| Vergütung Vorphase | **unentgeltlich**, bis kumuliert **CHF 20'000.– Projektgewinn** |
+| Danach | GmbH‑Gründung (Stammkapital mind. CHF 20'000.–) + bezahlte Regelung |
+| Vertrag | [`04-gruendervereinbarung.md`](04-gruendervereinbarung.md) |
+| Plan | bewusst **anpassbar** (lebendes Dokument, Ziff. 9 der Vereinbarung) |
+
+### 10.2 Was das für die Zahlen bedeutet
+
+- In der Vorphase entfällt die frühere Annahme «Gründergehalt 2.500 €/Monat».
+  Der operative Gewinn kann **vollständig** in die Projektkasse und Richtung
+  **CHF‑20'000‑Schwelle** fliessen (nach Material/Betriebskosten).
+- Kapazität: 2 Partner × 20 h ≈ **40 h/Monat** produktive/organisatorische Zeit
+  (nicht alles abrechenbar). Der Umsatzhochlauf ist deshalb eher **konservativer**
+  zu lesen als im Ein‑Personen‑Vollzeit‑Szenario oben — oder schneller, wenn beide
+  die Stunden konsequent in Verkauf + Katalog stecken.
+- Grobe Orientierung CHF (Wechselkurs ~1:1 für Planung, bitte aktualisieren):
+  Fixkosten eher **CHF 800–1'200 / Monat** (wenn weiter von zu Hause / Shared Setup);
+  Break‑even‑Umsatz weiterhin grob **CHF 1'200–1'600 / Monat**.
+- Die **CHF 20'000 Gewinn‑Schwelle** ist nicht derselbe Begriff wie «Break‑even der
+  Investition». Definition und Nachweis stehen im Vertrag (Einnahmen − Betriebsausgaben,
+  ohne fiktive Löhne).
+
+### 10.3 Reihenfolge der Meilensteine (Partnerschaftsmodell)
+
+1. Vertrag unterzeichnen, Stunden & Kasse starten  
+2. Operativer Break‑even (Kosten gedeckt)  
+3. Kumuliert **CHF 20'000.– Gewinn** → GmbH vorbereiten/gründen  
+4. Danach: Löhne / Geschäftsführervergütung neu festlegen, Plan Jahr 2 anpassen  
+
+Der Detail‑Hochlauf in §5 wird nach den ersten 60 Tagen mit **Ist‑Zahlen in CHF**
+ersetzt — genau dafür ist der Plan als lebendes Dokument gedacht.

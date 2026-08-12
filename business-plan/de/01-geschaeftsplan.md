@@ -325,21 +325,23 @@ POD (Volumen, planbar) und Prototyping (hohe Marge, schwankend).
 - **Produkthaftung & Haftungsausschluss:** klare AGB, „Reproduktionsteil / die
   Passform‑Korrektheit liegt in der Verantwortung des Käufers“ und eine
   **Betriebs‑/Produkthaftpflichtversicherung**.
-- **Unternehmensgründung:** Gewerbe anmelden; Kleinunternehmerregelung (§ 19
-  UStG) vs. Regelbesteuerung entscheiden; Steuerberater hinzuziehen. UG/GmbH
-  erwägen, sobald das Haftungsrisiko wächst.
+- **Unternehmensgründung:** Vorphase als Zusammenarbeit / einfache Gesellschaft;
+  Ziel **schweizerische GmbH** nach Erreichen von CHF 20'000.– Projektgewinn
+  (siehe Gründervereinbarung). MWST‑Pflicht und Sozialversicherungen mit Treuhand
+  klären.
 
 ---
 
 ## 11. Team & Organisation
 
-- **Gründer:in(nen):** Konstruktion/Scan/Druck/Veredelung + Vertrieb (zu Beginn
-  alle Hüte auf einmal).
-- **Frühes Outsourcing:** Buchhaltung/Steuer an einen Steuerberater; Versand per
-  Abholung durch den Paketdienst.
-- **Erste Einstellung (erst nach nachgewiesener Nachfrage):** eine Teilzeitkraft
-  für Veredelung/Verpackung, um Gründerzeit für höherwertiges CAD und Vertrieb
-  freizusetzen — das ist der größte Hebel zum Skalieren des Umsatzes.
+- **Partner / Gründer:** laut [`04-gruendervereinbarung.md`](04-gruendervereinbarung.md)
+  je **20 Stunden pro Monat** (~3 Tage), in der Vorphase **unentgeltlich**, bis
+  kumuliert **CHF 20'000.– Projektgewinn** erreicht sind; danach Gründung einer
+  **schweizerischen GmbH** und neue Vergütungsregel.
+- **Frühes Outsourcing:** Buchhaltung/Steuer an eine Treuhand / Fachperson; Versand
+  per Abholung durch den Paketdienst.
+- **Erste Einstellung (erst nach GmbH / nachgewiesener Nachfrage):** Teilzeit
+  Veredelung/Verpackung, um Gründerzeit für CAD und Vertrieb freizusetzen.
 
 ---
 

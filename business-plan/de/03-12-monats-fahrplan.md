@@ -109,14 +109,17 @@ operativen Break‑even erreichen.
 
 | Meilenstein | Ziel |
 |-------------|------|
+| Gründervereinbarung unterzeichnet · Kasse & Stundenlauf | Monat 1 |
 | Erster bezahlter Auftrag ausgeliefert | Monat 1 |
-| Operativer Break‑even (Umsatz ≥ ~1.470 €/Mon.) | Monat 3 |
+| Operativer Break‑even (Umsatz deckt Fixkosten) | Monat 3 |
 | Startkatalog (10–20 Teile) live | Monat 3–4 |
-| Gründervergütung (2.500 €/Mon.) durch Gewinn gedeckt | Monat 6–7 |
-| Frisches Kapital (6.000 €) wieder eingespielt | ~Monat 7 |
-| Erste Einstellung | Monat 8–10 |
-| Vollständige Amortisation des Kapitals (24.000 €) | Monat 11–14 |
+| Kumuliert **CHF 20'000.– Projektgewinn** → GmbH vorbereiten | sobald erreicht |
+| Schweizer GmbH gegründet · Vergütung neu geregelt | nach Schwelle (~90 Tage) |
 | 50+ Teile in der Dateibibliothek | Monat 12 |
+
+> Partner‑Regel: je **20 h/Monat**, in der Vorphase **unentgeltlich** bis zur
+> CHF‑20'000‑Gewinnschwelle — siehe [`04-gruendervereinbarung.md`](04-gruendervereinbarung.md).
+> Der Plan darf und soll mit Ist‑Zahlen angepasst werden.
 
 ---
 

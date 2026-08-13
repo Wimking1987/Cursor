@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discovery Q&amp;A – Stiftung Alterssiedl</title>
+  <style>
+    :root {
+      --ink: #1a1f1c;
+      --muted: #5a635c;
+      --line: #d5dbd6;
+      --bg: #f7f5f1;
+      --paper: #ffffff;
+      --accent: #2f5d50;
+      --accent-soft: #e8f0ed;
+      --done: #2f5d50;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at top left, #eef3ef 0%, transparent 45%),
+        linear-gradient(180deg, #f3f0ea 0%, var(--bg) 100%);
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    header {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.4rem;
+    }
+
+    h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      margin: 0 0 0.5rem;
+      line-height: 1.2;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .meta a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.1rem 0 0;
+    }
+
+    button {
+      font: inherit;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 0.45rem 0.8rem;
+      cursor: pointer;
+    }
+
+    button:hover { border-color: var(--accent); }
+
+    .progress {
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .progress strong { color: var(--accent); }
+
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.1rem 1.15rem 0.85rem;
+      margin: 1rem 0;
+    }
+
+    h2 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.15rem;
+      margin: 0 0 0.85rem;
+      color: var(--accent);
+    }
+
+    .qa {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.55rem 0.7rem;
+      padding: 0.7rem 0;
+      border-top: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .qa:first-of-type { border-top: none; }
+
+    input[type="checkbox"] {
+      width: 1.15rem;
+      height: 1.15rem;
+      margin-top: 0.15rem;
+      accent-color: var(--done);
+      cursor: pointer;
+    }
+
+    .q {
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+    }
+
+    .hint {
+      margin: 0 0 0.45rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 2.6rem;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.45rem 0.55rem;
+      font: inherit;
+      background: #fcfcfb;
+    }
+
+    textarea:focus {
+      outline: 2px solid var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .checked .q { text-decoration: line-through; color: var(--muted); }
+
+    footer {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media print {
+      body { background: white; }
+      .toolbar { display: none; }
+      section { break-inside: avoid; box-shadow: none; }
+      textarea { border: 1px solid #bbb; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="eyebrow">Discovery Meeting · Checkliste</p>
+      <h1>Stiftung Alterssiedl – Website Q&amp;A</h1>
+      <p class="meta">
+        Bestehende Seite:
+        <a href="https://wimlanz8.wixsite.com/stiftung-alterssiedl" target="_blank" rel="noopener">wimlanz8.wixsite.com/stiftung-alterssiedl</a>
+        · Stand: Platzhalter / wenig Inhalt · Sprache: Deutsch (CH)
+      </p>
+      <div class="toolbar">
+        <button type="button" id="saveLocal">Antworten speichern (Browser)</button>
+        <button type="button" id="clearLocal">Antworten löschen</button>
+        <button type="button" onclick="window.print()">Drucken / PDF</button>
+      </div>
+      <p class="progress">Fortschritt: <strong id="progressText">0 / 0</strong> Fragen abgehakt</p>
+    </header>
+
+    <section>
+      <h2>1. Organisation &amp; Ziel</h2>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Was ist der offizielle Name der Stiftung?</p>
+          <p class="hint">Vollständiger Name, allfällige Kurzform, Schreibweise «Alterssiedl / Alterssiedlung».</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Was ist der Stiftungszweck in 1–2 Sätzen?</p>
+          <p class="hint">z. B. Alterswohnungen, Betreuung, Pflege, Quartierbezug.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wo ist die Stiftung tätig (Ort / Region)?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Was soll die neue Website primär erreichen?</p>
+          <p class="hint">Informieren, Vertrauen schaffen, Wohnungen bewerben, Bewerbungen, Spenden, Mitarbeiter finden…</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Zielgruppen</h2>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wer sind die wichtigsten Besucher?</p>
+          <p class="hint">Interessierte Bewohner:innen, Angehörige, Gemeinde, Fachpersonen, Spender:innen, Bewerber:innen.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Welche Zielgruppe hat Priorität Nr. 1?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Welche Fragen stellen Interessierte am häufigsten?</p>
+          <p class="hint">Aufnahmebedingungen, Warteliste, Miete, Betreuung, Lage, Besichtigungen.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Inhalte &amp; Seiten</h2>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Welche Seiten braucht die Website mindestens?</p>
+          <p class="hint">z. B. Start, Über uns, Wohnen, Angebote, Aufnahme, Aktuelles, Kontakt, Jobs, Spenden.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Welche Inhalte sind schon vorhanden?</p>
+          <p class="hint">Texte, Fotos, Logo, Broschüren, Jahresbericht, Leitbild, Lageplan.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Was fehlt noch und muss neu erstellt werden?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Sollen freie Wohnungen / Warteliste online sichtbar sein?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Braucht es ein Kontakt- oder Anmeldeformular?</p>
+          <p class="hint">Allgemeine Anfrage, Wohnungsbewerbung, Besichtigung, Newsletter.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Design &amp; Tonalität</h2>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Gibt es ein bestehendes Corporate Design (Logo, Farben, Schriften)?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wie soll die Website wirken?</p>
+          <p class="hint">z. B. warm, vertrauenswürdig, ruhig, modern, nahbar, institutionell.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Gibt es Websites als Vorbild (gefällt / gefällt nicht)?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wie wichtig ist Barrierefreiheit / grosse Schrift / einfache Navigation?</p>
+          <p class="hint">Besonders relevant für ältere Zielgruppen.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Technik &amp; Betrieb</h2>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Soll die bestehende Wix-Seite weitergenutzt oder neu aufgebaut werden?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Gibt es bereits eine eigene Domain?</p>
+          <p class="hint">Falls ja: welche? Wer verwaltet DNS / Hosting?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wer pflegt Inhalte später selbst?</p>
+          <p class="hint">Stiftungsrat, Verwaltung, externe Agentur – und wie oft?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Welche Sprachen braucht die Seite?</p>
+          <p class="hint">Deutsch reicht? Dialekt? Französisch / Englisch?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Datenschutz: Impressum, Datenschutzseite, Cookie-Banner nötig?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Projekt &amp; nächste Schritte</h2>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Gibt es einen Wunschtermin für den Launch?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wer entscheidet final (Ansprechperson / Freigabe)?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Budgetrahmen (grob)?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Was muss aus diesem Meeting klar sein, damit wir starten können?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Offene Punkte / To-dos nach dem Meeting</p>
+          <textarea data-a placeholder="Wer liefert was bis wann…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Hinweis: Antworten werden nur lokal im Browser gespeichert (localStorage), nicht auf einen Server hochgeladen.
+    </footer>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "discovery-qa-stiftung-alterssiedl-v1";
+
+    function updateProgress() {
+      const boxes = [...document.querySelectorAll("input[data-q]")];
+      const done = boxes.filter((b) => b.checked).length;
+      document.getElementById("progressText").textContent = `${done} / ${boxes.length}`;
+      boxes.forEach((box) => {
+        box.closest(".qa")?.classList.toggle("checked", box.checked);
+      });
+    }
+
+    function collectState() {
+      const items = [...document.querySelectorAll(".qa")].map((row, index) => ({
+        index,
+        checked: row.querySelector("input[data-q]")?.checked || false,
+        answer: row.querySelector("textarea[data-a]")?.value || ""
+      }));
+      return { items, savedAt: new Date().toISOString() };
+    }
+
+    function applyState(state) {
+      if (!state?.items) return;
+      const rows = [...document.querySelectorAll(".qa")];
+      state.items.forEach((item) => {
+        const row = rows[item.index];
+        if (!row) return;
+        const box = row.querySelector("input[data-q]");
+        const area = row.querySelector("textarea[data-a]");
+        if (box) box.checked = !!item.checked;
+        if (area) area.value = item.answer || "";
+      });
+      updateProgress();
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState()));
+    }
+
+    document.addEventListener("change", (e) => {
+      if (e.target.matches("input[data-q], textarea[data-a]")) {
+        updateProgress();
+        saveState();
+      }
+    });
+
+    document.addEventListener("input", (e) => {
+      if (e.target.matches("textarea[data-a]")) saveState();
+    });
+
+    document.getElementById("saveLocal").addEventListener("click", () => {
+      saveState();
+      alert("Gespeichert.");
+    });
+
+    document.getElementById("clearLocal").addEventListener("click", () => {
+      if (!confirm("Alle Antworten und Häkchen löschen?")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll("input[data-q]").forEach((b) => (b.checked = false));
+      document.querySelectorAll("textarea[data-a]").forEach((t) => (t.value = ""));
+      updateProgress();
+    });
+
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) applyState(JSON.parse(raw));
+      else updateProgress();
+    } catch {
+      updateProgress();
+    }
+  </script>
+</body>
+</html>

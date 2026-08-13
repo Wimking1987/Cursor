@@ -3,19 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Discovery Q&amp;A – Stiftung Alterssiedlung Witikon</title>
+  <title>Meeting-Checkliste – Alterssiedlung Witikon</title>
   <style>
     :root {
-      --ink: #1a1f1c;
-      --muted: #5a635c;
-      --line: #d5dbd6;
-      --bg: #f7f5f1;
-      --paper: #ffffff;
+      --ink: #1c1f1d;
+      --muted: #5c635e;
+      --line: #d7dbd8;
+      --bg: #f6f4f0;
+      --paper: #fff;
       --accent: #2f5d50;
-      --accent-soft: #e8f0ed;
-      --warn: #8a5a2b;
-      --warn-bg: #f7efe4;
-      --done: #2f5d50;
     }
 
     * { box-sizing: border-box; }
@@ -24,177 +20,105 @@
       margin: 0;
       font-family: "Source Sans 3", "Segoe UI", sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(ellipse at top left, #eef3ef 0%, transparent 45%),
-        linear-gradient(180deg, #f3f0ea 0%, var(--bg) 100%);
+      background: linear-gradient(180deg, #eef2ef 0%, var(--bg) 40%);
       line-height: 1.45;
     }
 
     .page {
-      max-width: 860px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 2rem 1.25rem 4rem;
-    }
-
-    header {
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.15rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .eyebrow {
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 0.4rem;
+      padding: 2rem 1.2rem 3rem;
     }
 
     h1 {
       font-family: "Fraunces", Georgia, serif;
+      font-size: clamp(1.45rem, 3vw, 1.85rem);
+      margin: 0 0 0.35rem;
       font-weight: 600;
-      font-size: clamp(1.55rem, 3vw, 2.05rem);
-      margin: 0 0 0.5rem;
-      line-height: 1.2;
     }
 
     .meta {
+      margin: 0 0 1.25rem;
       color: var(--muted);
       font-size: 0.95rem;
-      margin: 0;
     }
 
-    .meta a {
-      color: var(--accent);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
-    }
-
-    .findings {
-      background: var(--warn-bg);
-      border: 1px solid #e2d0b8;
-      border-radius: 10px;
-      padding: 0.95rem 1.05rem;
-      margin: 1rem 0 1.25rem;
-    }
-
-    .findings h2 {
-      font-family: "Fraunces", Georgia, serif;
-      font-size: 1.05rem;
-      margin: 0 0 0.55rem;
-      color: var(--warn);
-    }
-
-    .findings ul {
-      margin: 0;
-      padding-left: 1.15rem;
-      color: #4a3a28;
-      font-size: 0.94rem;
-    }
-
-    .findings li { margin: 0.25rem 0; }
+    .meta a { color: var(--accent); }
 
     .toolbar {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin: 1rem 0 0;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     button {
       font: inherit;
       border: 1px solid var(--line);
       background: var(--paper);
-      color: var(--ink);
       border-radius: 6px;
-      padding: 0.45rem 0.8rem;
+      padding: 0.4rem 0.75rem;
       cursor: pointer;
     }
-
-    button:hover { border-color: var(--accent); }
-
-    .progress {
-      margin-top: 0.85rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .progress strong { color: var(--accent); }
 
     section {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 1.1rem 1.15rem 0.85rem;
-      margin: 1rem 0;
+      padding: 1rem 1.05rem 0.7rem;
+      margin: 0.85rem 0;
     }
 
     h2 {
       font-family: "Fraunces", Georgia, serif;
-      font-size: 1.15rem;
-      margin: 0 0 0.85rem;
+      font-size: 1.05rem;
       color: var(--accent);
+      margin: 0 0 0.55rem;
     }
 
     .qa {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 0.55rem 0.7rem;
-      padding: 0.7rem 0;
+      gap: 0.45rem 0.65rem;
+      padding: 0.65rem 0;
       border-top: 1px solid var(--line);
       align-items: start;
     }
 
-    .qa:first-of-type { border-top: none; }
+    .qa:first-of-type { border-top: 0; }
 
     input[type="checkbox"] {
-      width: 1.15rem;
-      height: 1.15rem;
+      width: 1.1rem;
+      height: 1.1rem;
       margin-top: 0.15rem;
-      accent-color: var(--done);
-      cursor: pointer;
+      accent-color: var(--accent);
     }
 
-    .q {
-      font-weight: 600;
-      margin: 0 0 0.35rem;
-    }
-
-    .hint {
-      margin: 0 0 0.45rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .q { font-weight: 600; margin: 0 0 0.3rem; }
+    .hint { margin: 0 0 0.4rem; color: var(--muted); font-size: 0.9rem; }
 
     textarea {
       width: 100%;
-      min-height: 2.6rem;
+      min-height: 2.4rem;
       resize: vertical;
       border: 1px solid var(--line);
       border-radius: 6px;
-      padding: 0.45rem 0.55rem;
+      padding: 0.4rem 0.5rem;
       font: inherit;
-      background: #fcfcfb;
-    }
-
-    textarea:focus {
-      outline: 2px solid var(--accent-soft);
-      border-color: var(--accent);
     }
 
     .checked .q { text-decoration: line-through; color: var(--muted); }
 
-    footer {
-      margin-top: 1.5rem;
+    .progress {
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      margin: 0 0 0.75rem;
     }
 
     @media print {
-      body { background: white; }
+      body { background: #fff; }
       .toolbar { display: none; }
-      section, .findings { break-inside: avoid; box-shadow: none; }
-      textarea { border: 1px solid #bbb; }
+      section { break-inside: avoid; }
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -203,81 +127,57 @@
 </head>
 <body>
   <div class="page">
-    <header>
-      <p class="eyebrow">Discovery Meeting · Checkliste</p>
-      <h1>Stiftung Alterssiedlung Witikon – Website Q&amp;A</h1>
-      <p class="meta">
-        Aktuelle Seite:
-        <a href="https://wimlanz8.wixstudio.com/alterssiedlung" target="_blank" rel="noopener">wimlanz8.wixstudio.com/alterssiedlung</a>
-        · Wix Studio · Sprache: Deutsch (CH)
-      </p>
-      <div class="toolbar">
-        <button type="button" id="saveLocal">Antworten speichern (Browser)</button>
-        <button type="button" id="clearLocal">Antworten löschen</button>
-        <button type="button" onclick="window.print()">Drucken / PDF</button>
-      </div>
-      <p class="progress">Fortschritt: <strong id="progressText">0 / 0</strong> Fragen abgehakt</p>
-    </header>
+    <h1>Meeting-Checkliste – Website-Anpassungen</h1>
+    <p class="meta">
+      Stiftung Alterssiedlung Witikon ·
+      <a href="https://wimlanz8.wixstudio.com/alterssiedlung" target="_blank" rel="noopener">wixstudio.com/alterssiedlung</a>
+      · Design steht, Änderungen besprechen
+    </p>
 
-    <div class="findings">
-      <h2>Kurzbefund der bestehenden Seite (zum Abgleich im Meeting)</h2>
-      <ul>
-        <li>Headline vorhanden: «Stiftung Alterssiedlung Witikon» + Claim «Ruhig wohnen in Witikon…»</li>
-        <li>Inhalt zu Mietangeboten: 1- / 2- / 2.5-Zimmer, renoviert, Gemeinschaftsraum, Spitex in der Nähe</li>
-        <li>Kontaktformular vorhanden (Vorname, Name, E-Mail, Wohnungsinteresse)</li>
-        <li>Noch Template-Reste auf Englisch: «The Architects», «Secure Your Luxurious Lifestyle», Amenities wie Pool / Playground / Concierge</li>
-        <li>SEO-Titel noch «Startseite | My Site 13» · Seitenstruktur sehr schmal (Startseite + Privacy / Accessibility)</li>
-        <li>Tippfehler sichtbar: «Mietwohungen», Accessibility-Seite falsch geschrieben</li>
-      </ul>
+    <div class="toolbar">
+      <button type="button" id="saveLocal">Speichern</button>
+      <button type="button" id="clearLocal">Löschen</button>
+      <button type="button" onclick="window.print()">Drucken / PDF</button>
     </div>
+    <p class="progress">Abgehakt: <strong id="progressText">0 / 0</strong></p>
 
     <section>
-      <h2>1. Organisation &amp; Ziel</h2>
+      <h2>Änderungen</h2>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Ist «Stiftung Alterssiedlung Witikon» der verbindliche Name für Website, Impressum und SEO?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
+          <p class="q">Welche Änderungen wollt ihr genau?</p>
+          <p class="hint">Texte, Fotos, Layout, Formular, Seiten, Template-Reste entfernen…</p>
+          <textarea data-a placeholder="Liste der gewünschten Änderungen…"></textarea>
         </div>
       </div>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Stimmt der Claim «Ruhig wohnen in Witikon – selbstbestimmt und gut umsorgt»?</p>
-          <p class="hint">Behalten, kürzen oder neu formulieren?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
+          <p class="q">Was ist Must-have, was Nice-to-have?</p>
+          <textarea data-a placeholder="Prio 1 / Prio 2…"></textarea>
         </div>
       </div>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Was soll die Website primär erreichen?</p>
-          <p class="hint">Wohnungsinteressierte informieren, Besichtigungen auslösen, Vertrauen schaffen, Verwaltung entlasten…</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wer ist die wichtigste Zielgruppe?</p>
-          <p class="hint">Zukünftige Bewohner:innen, Angehörige, Gemeinde, Fachstellen…</p>
+          <p class="q">Was bleibt so wie designed?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>2. Inhalte – was bleibt / was weg</h2>
+      <h2>Inhalt &amp; Freigaben</h2>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Dürfen die englischen Template-Blöcke komplett entfernt werden?</p>
-          <p class="hint">Architects / Developer / Luxurious Lifestyle / Pool / Playground / Concierge.</p>
+          <p class="q">Sind finale Texte / Fotos / Logo schon bereit?</p>
+          <p class="hint">Falls nicht: wer liefert bis wann?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -285,55 +185,28 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Ist der Mietangebote-Text fachlich korrekt und freigegeben?</p>
-          <p class="hint">Selbständigkeit, Hilfe selbst organisieren, Spitex in der Nähe, Gemeinschaftsraum, Waschküche.</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Sollen 1-, 2- und 2.5-Zimmer-Wohnungen einzeln detailliert bleiben?</p>
-          <p class="hint">Aktuell fast gleicher Beschreibungstext für alle Typen – differenzieren oder kürzen?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Braucht es echte Verfügbarkeit / Warteliste / Preise online?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Welche zusätzlichen Seiten fehlen noch?</p>
-          <p class="hint">Über uns / Stiftung, Lage &amp; Umgebung, Aufnahmebedingungen, FAQ, Aktuelles, Jobs, Spenden, Impressum.</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Welche Fotos / Grundrisse / Dokumente können wir nutzen?</p>
-          <p class="hint">Aussen/Innen, Gemeinschaftsraum, Lageplan, PDF-Grundrisse (Buttons sind schon angedeutet).</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
+          <p class="q">Wer gibt die Änderungen final frei?</p>
+          <textarea data-a placeholder="Name / Rolle…"></textarea>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>3. Kontakt &amp; Anfragen</h2>
+      <h2>Deadline &amp; Ablauf</h2>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Wohin sollen Formular-Anfragen gehen (E-Mail / Person)?</p>
+          <p class="q">Wann soll die angepasste Version online sein?</p>
+          <textarea data-a placeholder="Wunschdatum…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Gibt es einen harten Deadline-Grund?</p>
+          <p class="hint">Event, Versand, Stiftungsrat, Domain-Umschaltung…</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -341,182 +214,39 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Reicht das Formular (Vorname, Name, E-Mail, Wohnungstyp) oder fehlen Felder?</p>
-          <p class="hint">Telefon, Nachricht, gewünschter Einzugstermin, Bezug zu Witikon…</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
+          <p class="q">Wie viele Korrekturrunden sind eingeplant?</p>
+          <textarea data-a placeholder="z. B. 1–2 Runden…"></textarea>
         </div>
       </div>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Sollen Adresse, Telefon und Öffnungszeiten sichtbar sein?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wie läuft der Prozess nach einer Anfrage?</p>
-          <p class="hint">Antwortzeit, Besichtigung, Unterlagen, Warteliste.</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
+          <p class="q">Nächster Schritt nach dem Meeting?</p>
+          <textarea data-a placeholder="Briefing mailen / Angebot / Umsetzen ab …"></textarea>
         </div>
       </div>
     </section>
-
-    <section>
-      <h2>4. Design, Marke &amp; Barrierefreiheit</h2>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Gibt es Logo, Farben und Schriften der Stiftung?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wie soll die Seite wirken?</p>
-          <p class="hint">Ruhig, vertrauenswürdig, nahbar, modern – was passt zu Witikon / Alterswohnen?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wie wichtig sind grosse Schrift, Kontrast und einfache Navigation?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">SEO-Titel / Browser-Titel: neuer Name statt «My Site 13»?</p>
-          <p class="hint">Vorschlag: «Stiftung Alterssiedlung Witikon | Alterswohnungen Zürich».</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>5. Technik &amp; Domain</h2>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Bleiben wir auf Wix Studio und bauen diese Seite weiter aus?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Gibt es bereits eine eigene Domain (statt wixstudio.com)?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Was passiert mit der alten URL wimlanz8.wixsite.com/stiftung-alterssiedl?</p>
-          <p class="hint">Weiterleitung, archivieren oder ignorieren?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wer pflegt Inhalte später (Texte, Fotos, Verfügbarkeit)?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Impressum &amp; Datenschutz: Inhalte vorhanden und freigegeben?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>6. Prioritäten &amp; nächste Schritte</h2>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Was muss zuerst fertig sein (Quick Wins)?</p>
-          <p class="hint">z. B. Template-Reste raus, Tippfehler, SEO-Titel, Kontakt klar, echte Fotos.</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wunschtermin für eine «saubere» erste Version?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wer gibt Texte und Design final frei?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Budgetrahmen (grob)?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">To-dos nach dem Meeting</p>
-          <textarea data-a placeholder="Wer liefert was bis wann…"></textarea>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      Hinweis: Antworten werden nur lokal im Browser gespeichert (localStorage), nicht auf einen Server hochgeladen.
-    </footer>
   </div>
 
   <script>
-    const STORAGE_KEY = "discovery-qa-alterssiedlung-witikon-v2";
+    const STORAGE_KEY = "meeting-checklist-alterssiedlung-v1";
 
     function updateProgress() {
       const boxes = [...document.querySelectorAll("input[data-q]")];
       const done = boxes.filter((b) => b.checked).length;
       document.getElementById("progressText").textContent = `${done} / ${boxes.length}`;
-      boxes.forEach((box) => {
-        box.closest(".qa")?.classList.toggle("checked", box.checked);
-      });
+      boxes.forEach((box) => box.closest(".qa")?.classList.toggle("checked", box.checked));
     }
 
     function collectState() {
-      const items = [...document.querySelectorAll(".qa")].map((row, index) => ({
-        index,
-        checked: row.querySelector("input[data-q]")?.checked || false,
-        answer: row.querySelector("textarea[data-a]")?.value || ""
-      }));
-      return { items, savedAt: new Date().toISOString() };
+      return {
+        items: [...document.querySelectorAll(".qa")].map((row, index) => ({
+          index,
+          checked: !!row.querySelector("input[data-q]")?.checked,
+          answer: row.querySelector("textarea[data-a]")?.value || ""
+        }))
+      };
     }
 
     function applyState(state) {
@@ -543,7 +273,6 @@
         saveState();
       }
     });
-
     document.addEventListener("input", (e) => {
       if (e.target.matches("textarea[data-a]")) saveState();
     });
@@ -552,9 +281,8 @@
       saveState();
       alert("Gespeichert.");
     });
-
     document.getElementById("clearLocal").addEventListener("click", () => {
-      if (!confirm("Alle Antworten und Häkchen löschen?")) return;
+      if (!confirm("Alles löschen?")) return;
       localStorage.removeItem(STORAGE_KEY);
       document.querySelectorAll("input[data-q]").forEach((b) => (b.checked = false));
       document.querySelectorAll("textarea[data-a]").forEach((t) => (t.value = ""));

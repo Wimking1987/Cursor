@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Discovery Q&amp;A – Stiftung Alterssiedl</title>
+  <title>Discovery Q&amp;A – Stiftung Alterssiedlung Witikon</title>
   <style>
     :root {
       --ink: #1a1f1c;
@@ -13,6 +13,8 @@
       --paper: #ffffff;
       --accent: #2f5d50;
       --accent-soft: #e8f0ed;
+      --warn: #8a5a2b;
+      --warn-bg: #f7efe4;
       --done: #2f5d50;
     }
 
@@ -29,14 +31,14 @@
     }
 
     .page {
-      max-width: 820px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 2rem 1.25rem 4rem;
     }
 
     header {
-      margin-bottom: 1.75rem;
-      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.15rem;
       border-bottom: 1px solid var(--line);
     }
 
@@ -51,7 +53,7 @@
     h1 {
       font-family: "Fraunces", Georgia, serif;
       font-weight: 600;
-      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-size: clamp(1.55rem, 3vw, 2.05rem);
       margin: 0 0 0.5rem;
       line-height: 1.2;
     }
@@ -68,11 +70,35 @@
       text-underline-offset: 2px;
     }
 
+    .findings {
+      background: var(--warn-bg);
+      border: 1px solid #e2d0b8;
+      border-radius: 10px;
+      padding: 0.95rem 1.05rem;
+      margin: 1rem 0 1.25rem;
+    }
+
+    .findings h2 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.05rem;
+      margin: 0 0 0.55rem;
+      color: var(--warn);
+    }
+
+    .findings ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: #4a3a28;
+      font-size: 0.94rem;
+    }
+
+    .findings li { margin: 0.25rem 0; }
+
     .toolbar {
       display: flex;
       flex-wrap: wrap;
       gap: 0.6rem;
-      margin: 1.1rem 0 0;
+      margin: 1rem 0 0;
     }
 
     button {
@@ -88,7 +114,7 @@
     button:hover { border-color: var(--accent); }
 
     .progress {
-      margin-top: 0.9rem;
+      margin-top: 0.85rem;
       font-size: 0.9rem;
       color: var(--muted);
     }
@@ -167,7 +193,7 @@
     @media print {
       body { background: white; }
       .toolbar { display: none; }
-      section { break-inside: avoid; box-shadow: none; }
+      section, .findings { break-inside: avoid; box-shadow: none; }
       textarea { border: 1px solid #bbb; }
     }
   </style>
@@ -179,11 +205,11 @@
   <div class="page">
     <header>
       <p class="eyebrow">Discovery Meeting · Checkliste</p>
-      <h1>Stiftung Alterssiedl – Website Q&amp;A</h1>
+      <h1>Stiftung Alterssiedlung Witikon – Website Q&amp;A</h1>
       <p class="meta">
-        Bestehende Seite:
-        <a href="https://wimlanz8.wixsite.com/stiftung-alterssiedl" target="_blank" rel="noopener">wimlanz8.wixsite.com/stiftung-alterssiedl</a>
-        · Stand: Platzhalter / wenig Inhalt · Sprache: Deutsch (CH)
+        Aktuelle Seite:
+        <a href="https://wimlanz8.wixstudio.com/alterssiedlung" target="_blank" rel="noopener">wimlanz8.wixstudio.com/alterssiedlung</a>
+        · Wix Studio · Sprache: Deutsch (CH)
       </p>
       <div class="toolbar">
         <button type="button" id="saveLocal">Antworten speichern (Browser)</button>
@@ -193,14 +219,25 @@
       <p class="progress">Fortschritt: <strong id="progressText">0 / 0</strong> Fragen abgehakt</p>
     </header>
 
+    <div class="findings">
+      <h2>Kurzbefund der bestehenden Seite (zum Abgleich im Meeting)</h2>
+      <ul>
+        <li>Headline vorhanden: «Stiftung Alterssiedlung Witikon» + Claim «Ruhig wohnen in Witikon…»</li>
+        <li>Inhalt zu Mietangeboten: 1- / 2- / 2.5-Zimmer, renoviert, Gemeinschaftsraum, Spitex in der Nähe</li>
+        <li>Kontaktformular vorhanden (Vorname, Name, E-Mail, Wohnungsinteresse)</li>
+        <li>Noch Template-Reste auf Englisch: «The Architects», «Secure Your Luxurious Lifestyle», Amenities wie Pool / Playground / Concierge</li>
+        <li>SEO-Titel noch «Startseite | My Site 13» · Seitenstruktur sehr schmal (Startseite + Privacy / Accessibility)</li>
+        <li>Tippfehler sichtbar: «Mietwohungen», Accessibility-Seite falsch geschrieben</li>
+      </ul>
+    </div>
+
     <section>
       <h2>1. Organisation &amp; Ziel</h2>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Was ist der offizielle Name der Stiftung?</p>
-          <p class="hint">Vollständiger Name, allfällige Kurzform, Schreibweise «Alterssiedl / Alterssiedlung».</p>
+          <p class="q">Ist «Stiftung Alterssiedlung Witikon» der verbindliche Name für Website, Impressum und SEO?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -208,8 +245,8 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Was ist der Stiftungszweck in 1–2 Sätzen?</p>
-          <p class="hint">z. B. Alterswohnungen, Betreuung, Pflege, Quartierbezug.</p>
+          <p class="q">Stimmt der Claim «Ruhig wohnen in Witikon – selbstbestimmt und gut umsorgt»?</p>
+          <p class="hint">Behalten, kürzen oder neu formulieren?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -217,7 +254,8 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Wo ist die Stiftung tätig (Ort / Region)?</p>
+          <p class="q">Was soll die Website primär erreichen?</p>
+          <p class="hint">Wohnungsinteressierte informieren, Besichtigungen auslösen, Vertrauen schaffen, Verwaltung entlasten…</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -225,51 +263,21 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Was soll die neue Website primär erreichen?</p>
-          <p class="hint">Informieren, Vertrauen schaffen, Wohnungen bewerben, Bewerbungen, Spenden, Mitarbeiter finden…</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>2. Zielgruppen</h2>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wer sind die wichtigsten Besucher?</p>
-          <p class="hint">Interessierte Bewohner:innen, Angehörige, Gemeinde, Fachpersonen, Spender:innen, Bewerber:innen.</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Welche Zielgruppe hat Priorität Nr. 1?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Welche Fragen stellen Interessierte am häufigsten?</p>
-          <p class="hint">Aufnahmebedingungen, Warteliste, Miete, Betreuung, Lage, Besichtigungen.</p>
+          <p class="q">Wer ist die wichtigste Zielgruppe?</p>
+          <p class="hint">Zukünftige Bewohner:innen, Angehörige, Gemeinde, Fachstellen…</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>3. Inhalte &amp; Seiten</h2>
+      <h2>2. Inhalte – was bleibt / was weg</h2>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Welche Seiten braucht die Website mindestens?</p>
-          <p class="hint">z. B. Start, Über uns, Wohnen, Angebote, Aufnahme, Aktuelles, Kontakt, Jobs, Spenden.</p>
+          <p class="q">Dürfen die englischen Template-Blöcke komplett entfernt werden?</p>
+          <p class="hint">Architects / Developer / Luxurious Lifestyle / Pool / Playground / Concierge.</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -277,8 +285,8 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Welche Inhalte sind schon vorhanden?</p>
-          <p class="hint">Texte, Fotos, Logo, Broschüren, Jahresbericht, Leitbild, Lageplan.</p>
+          <p class="q">Ist der Mietangebote-Text fachlich korrekt und freigegeben?</p>
+          <p class="hint">Selbständigkeit, Hilfe selbst organisieren, Spitex in der Nähe, Gemeinschaftsraum, Waschküche.</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -286,7 +294,8 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Was fehlt noch und muss neu erstellt werden?</p>
+          <p class="q">Sollen 1-, 2- und 2.5-Zimmer-Wohnungen einzeln detailliert bleiben?</p>
+          <p class="hint">Aktuell fast gleicher Beschreibungstext für alle Typen – differenzieren oder kürzen?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -294,7 +303,7 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Sollen freie Wohnungen / Warteliste online sichtbar sein?</p>
+          <p class="q">Braucht es echte Verfügbarkeit / Warteliste / Preise online?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -302,20 +311,8 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Braucht es ein Kontakt- oder Anmeldeformular?</p>
-          <p class="hint">Allgemeine Anfrage, Wohnungsbewerbung, Besichtigung, Newsletter.</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>4. Design &amp; Tonalität</h2>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Gibt es ein bestehendes Corporate Design (Logo, Farben, Schriften)?</p>
+          <p class="q">Welche zusätzlichen Seiten fehlen noch?</p>
+          <p class="hint">Über uns / Stiftung, Lage &amp; Umgebung, Aufnahmebedingungen, FAQ, Aktuelles, Jobs, Spenden, Impressum.</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -323,37 +320,20 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Wie soll die Website wirken?</p>
-          <p class="hint">z. B. warm, vertrauenswürdig, ruhig, modern, nahbar, institutionell.</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Gibt es Websites als Vorbild (gefällt / gefällt nicht)?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Wie wichtig ist Barrierefreiheit / grosse Schrift / einfache Navigation?</p>
-          <p class="hint">Besonders relevant für ältere Zielgruppen.</p>
+          <p class="q">Welche Fotos / Grundrisse / Dokumente können wir nutzen?</p>
+          <p class="hint">Aussen/Innen, Gemeinschaftsraum, Lageplan, PDF-Grundrisse (Buttons sind schon angedeutet).</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>5. Technik &amp; Betrieb</h2>
+      <h2>3. Kontakt &amp; Anfragen</h2>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Soll die bestehende Wix-Seite weitergenutzt oder neu aufgebaut werden?</p>
+          <p class="q">Wohin sollen Formular-Anfragen gehen (E-Mail / Person)?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -361,8 +341,8 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Gibt es bereits eine eigene Domain?</p>
-          <p class="hint">Falls ja: welche? Wer verwaltet DNS / Hosting?</p>
+          <p class="q">Reicht das Formular (Vorname, Name, E-Mail, Wohnungstyp) oder fehlen Felder?</p>
+          <p class="hint">Telefon, Nachricht, gewünschter Einzugstermin, Bezug zu Witikon…</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -370,8 +350,7 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Wer pflegt Inhalte später selbst?</p>
-          <p class="hint">Stiftungsrat, Verwaltung, externe Agentur – und wie oft?</p>
+          <p class="q">Sollen Adresse, Telefon und Öffnungszeiten sichtbar sein?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -379,28 +358,20 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Welche Sprachen braucht die Seite?</p>
-          <p class="hint">Deutsch reicht? Dialekt? Französisch / Englisch?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Datenschutz: Impressum, Datenschutzseite, Cookie-Banner nötig?</p>
+          <p class="q">Wie läuft der Prozess nach einer Anfrage?</p>
+          <p class="hint">Antwortzeit, Besichtigung, Unterlagen, Warteliste.</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>6. Projekt &amp; nächste Schritte</h2>
+      <h2>4. Design, Marke &amp; Barrierefreiheit</h2>
 
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Gibt es einen Wunschtermin für den Launch?</p>
+          <p class="q">Gibt es Logo, Farben und Schriften der Stiftung?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -408,7 +379,99 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Wer entscheidet final (Ansprechperson / Freigabe)?</p>
+          <p class="q">Wie soll die Seite wirken?</p>
+          <p class="hint">Ruhig, vertrauenswürdig, nahbar, modern – was passt zu Witikon / Alterswohnen?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wie wichtig sind grosse Schrift, Kontrast und einfache Navigation?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">SEO-Titel / Browser-Titel: neuer Name statt «My Site 13»?</p>
+          <p class="hint">Vorschlag: «Stiftung Alterssiedlung Witikon | Alterswohnungen Zürich».</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Technik &amp; Domain</h2>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Bleiben wir auf Wix Studio und bauen diese Seite weiter aus?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Gibt es bereits eine eigene Domain (statt wixstudio.com)?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Was passiert mit der alten URL wimlanz8.wixsite.com/stiftung-alterssiedl?</p>
+          <p class="hint">Weiterleitung, archivieren oder ignorieren?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wer pflegt Inhalte später (Texte, Fotos, Verfügbarkeit)?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Impressum &amp; Datenschutz: Inhalte vorhanden und freigegeben?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Prioritäten &amp; nächste Schritte</h2>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Was muss zuerst fertig sein (Quick Wins)?</p>
+          <p class="hint">z. B. Template-Reste raus, Tippfehler, SEO-Titel, Kontakt klar, echte Fotos.</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wunschtermin für eine «saubere» erste Version?</p>
+          <textarea data-a placeholder="Antwort…"></textarea>
+        </div>
+      </div>
+
+      <div class="qa">
+        <input type="checkbox" data-q>
+        <div>
+          <p class="q">Wer gibt Texte und Design final frei?</p>
           <textarea data-a placeholder="Antwort…"></textarea>
         </div>
       </div>
@@ -424,15 +487,7 @@
       <div class="qa">
         <input type="checkbox" data-q>
         <div>
-          <p class="q">Was muss aus diesem Meeting klar sein, damit wir starten können?</p>
-          <textarea data-a placeholder="Antwort…"></textarea>
-        </div>
-      </div>
-
-      <div class="qa">
-        <input type="checkbox" data-q>
-        <div>
-          <p class="q">Offene Punkte / To-dos nach dem Meeting</p>
+          <p class="q">To-dos nach dem Meeting</p>
           <textarea data-a placeholder="Wer liefert was bis wann…"></textarea>
         </div>
       </div>
@@ -444,7 +499,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "discovery-qa-stiftung-alterssiedl-v1";
+    const STORAGE_KEY = "discovery-qa-alterssiedlung-witikon-v2";
 
     function updateProgress() {
       const boxes = [...document.querySelectorAll("input[data-q]")];

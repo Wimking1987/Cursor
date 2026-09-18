@@ -39,7 +39,7 @@ export const CATEGORY_LABELS: Record<WearCategory, string> = {
   brakes: 'Bremsen',
   drivetrain: 'Antrieb',
   wheels: 'Räder',
-  other: 'Sonstiges',
+  other: 'Wartung',
 }
 
 export const DEFAULT_INTERVALS: Record<WearCategory, number> = {

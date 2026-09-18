@@ -44,6 +44,18 @@ const CATEGORY_ICONS: Record<WearCategory, typeof Disc> = {
   other: Wrench,
 }
 
+function BrandHeader() {
+  return (
+    <header className="brand">
+      <div className="brand-mark" aria-hidden>
+        <Bike size={22} strokeWidth={1.8} />
+      </div>
+      <h1>NOAH&apos;S Garage</h1>
+      <p>Bike Care · Verschleiß · Strava</p>
+    </header>
+  )
+}
+
 function StatusBar() {
   const [now, setNow] = useState(() => new Date())
   useEffect(() => {
@@ -53,10 +65,7 @@ function StatusBar() {
   return (
     <div className="status-row">
       <span className="clock">{format(now, 'HH.mm')}</span>
-      <div className="status-icons">
-        <Bike size={14} />
-        <span>Bike Care</span>
-      </div>
+      <span>Kunde-Demo</span>
     </div>
   )
 }
@@ -450,6 +459,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <BrandHeader />
       <StatusBar />
 
       {tab === 'dashboard' && (

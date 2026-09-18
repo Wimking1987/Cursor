@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#16121f" />
+  <title>Bike Care — Vorschau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #16121f;
+      --bg-mid: #1e1830;
+      --card: #2a2438;
+      --card-soft: #322b42;
+      --accent: #ff6b4a;
+      --accent-soft: rgba(255, 107, 74, 0.18);
+      --text: #f4f1ec;
+      --muted: #9a94a8;
+      --line: rgba(255, 255, 255, 0.08);
+      --radius: 26px;
+      --radius-sm: 20px;
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100dvh;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, #3a2a55 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 10%, #2a1f3d 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg-mid) 0%, var(--bg) 45%, #120e1a 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+      border: none;
+      background: none;
+    }
+    button { cursor: pointer; }
+
+    .app-shell {
+      width: min(420px, 100%);
+      margin: 0 auto;
+      min-height: 100dvh;
+      padding: 12px 16px 96px;
+      position: relative;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 4px 10px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .clock {
+      font-family: "Outfit", sans-serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .status-icons { display: flex; gap: 8px; align-items: center; }
+
+    .card {
+      background: linear-gradient(160deg, var(--card-soft) 0%, var(--card) 100%);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    .summary-card {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      padding: 18px 16px;
+      margin-bottom: 14px;
+      animation: rise 0.55s ease both;
+    }
+    .divider {
+      width: 1px;
+      background: var(--line);
+      margin: 4px 8px;
+    }
+    .summary-left .month {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+    .summary-left .day {
+      font-family: "Outfit", sans-serif;
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1;
+      margin: 4px 0;
+    }
+    .summary-left .weekday { color: var(--muted); font-size: 0.92rem; }
+
+    .summary-right {
+      padding-left: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .event-item strong { display: block; font-size: 0.92rem; font-weight: 600; }
+    .event-item span { font-size: 0.78rem; color: var(--muted); }
+
+    .mid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+      animation: rise 0.65s ease both;
+      animation-delay: 0.08s;
+    }
+
+    .tile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .tile {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(160deg, #343047 0%, #292338 100%);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      transition: transform 0.18s ease, filter 0.18s ease;
+      color: var(--text);
+      width: 100%;
+    }
+    .tile:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .tile svg { opacity: 0.92; }
+    .tile label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+      pointer-events: none;
+    }
+    .badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #1a1010;
+      font-size: 0.68rem;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 12px rgba(255, 107, 74, 0.45);
+    }
+    .badge.ok { background: #3dce8a; color: #0d1f16; }
+    .badge.warn { background: #ffb020; }
+
+    .tip-card {
+      border-radius: var(--radius);
+      background: linear-gradient(165deg, #36304a 0%, #261f36 100%);
+      border: 1px solid var(--line);
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+      box-shadow: var(--shadow);
+    }
+    .tip-card .eyebrow {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tip-card blockquote {
+      margin-top: 12px;
+      font-family: "Outfit", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+      position: relative;
+    }
+    .tip-card blockquote::before {
+      content: "“";
+      font-size: 2.4rem;
+      color: var(--accent);
+      position: absolute;
+      top: -18px;
+      left: -4px;
+      opacity: 0.85;
+      font-family: Georgia, serif;
+    }
+
+    .route-card {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      animation: rise 0.7s ease both;
+      animation-delay: 0.14s;
+    }
+    .route-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(255, 107, 74, 0.35), transparent 60%),
+        linear-gradient(160deg, #3a334f, #1f1a2c);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+    }
+    .route-meta h3 {
+      font-size: 0.95rem;
+      font-weight: 650;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .route-meta p {
+      margin: 2px 0 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .progress {
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .progress > span {
+      display: block;
+      height: 100%;
+      width: 62%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #ff8a6a, var(--accent));
+    }
+    .brand-pill {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #1ed760;
+      display: grid;
+      place-items: center;
+      align-self: start;
+      color: #0a1a10;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: min(420px, 100%);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      padding: 10px 18px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(18, 14, 26, 0.92);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--line);
+      z-index: 20;
+    }
+    .nav-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px;
+      border-radius: 14px;
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+    .nav-btn.active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .nav-btn.active svg { color: var(--accent); }
+
+    .panel { animation: rise 0.4s ease both; display: none; }
+    .panel.visible { display: block; }
+    .panel h2 {
+      font-family: "Outfit", sans-serif;
+      font-size: 1.45rem;
+      margin: 8px 0 16px;
+    }
+
+    .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+    .tabs button {
+      flex: 1;
+      padding: 10px;
+      border-radius: 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+    .tabs button.active {
+      color: var(--text);
+      border-color: rgba(255, 107, 74, 0.4);
+      background: var(--accent-soft);
+    }
+
+    .form { display: flex; flex-direction: column; gap: 12px; }
+    .form label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .form input, .form select, .form textarea {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--text);
+    }
+    .form input:focus, .form select:focus, .form textarea:focus {
+      outline: 2px solid rgba(255, 107, 74, 0.45);
+      border-color: transparent;
+    }
+
+    .btn-primary {
+      margin-top: 6px;
+      background: var(--accent);
+      color: #1a1010;
+      font-weight: 700;
+      padding: 14px 18px;
+      border-radius: 16px;
+    }
+    .btn-ghost {
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-weight: 600;
+      padding: 12px 16px;
+      border-radius: 14px;
+    }
+
+    .settings-block { padding: 16px; margin-bottom: 12px; }
+    .settings-block h3 { margin: 0 0 8px; font-size: 1rem; }
+    .settings-block p { margin: 0 0 12px; color: var(--muted); font-size: 0.85rem; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 92px;
+      background: var(--card-soft);
+      border: 1px solid var(--line);
+      padding: 10px 16px;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      box-shadow: var(--shadow);
+      z-index: 30;
+      display: none;
+    }
+    .toast.show { display: block; animation: rise 0.3s ease both; }
+
+    .dash { display: block; }
+    .dash.hidden { display: none; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="status-row">
+      <span class="clock" id="clock">19.35</span>
+      <div class="status-icons">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10"/><path d="m15 10 5-5"/><path d="M18 5h2v2"/></svg>
+        <span>Bike Care</span>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dash" class="dash">
+      <section class="card summary-card" aria-label="Monats-Zusammenfassung">
+        <div class="summary-left">
+          <div class="month" id="monthLabel">September</div>
+          <div class="day" id="dayLabel">18</div>
+          <div class="weekday" id="weekdayLabel">Freitag</div>
+        </div>
+        <div class="divider"></div>
+        <div class="summary-right">
+          <div class="label-row">
+            <span>Summary</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div class="event-item">
+            <strong id="monthKm">101.5 km</strong>
+            <span>diesen Monat</span>
+          </div>
+          <div class="event-item">
+            <strong id="monthRides">3 Fahrten</strong>
+            <span id="monthMaint">1 Wartungen</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="mid-row">
+        <div class="tile-grid">
+          <button type="button" class="tile" onclick="go('add')">
+            <span class="badge">153</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+            <label>Bremsen</label>
+          </button>
+          <button type="button" class="tile" onclick="go('add')">
+            <span class="badge ok">2153</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <label>Antrieb</label>
+          </button>
+          <button type="button" class="tile" onclick="go('add')">
+            <span class="badge ok">3953</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12.1" cy="12.1" r="8.5"/><circle cx="12.1" cy="12.1" r="2"/></svg>
+            <label>Räder</label>
+          </button>
+          <button type="button" class="tile" onclick="go('add')">
+            <span class="badge warn">753</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <label>Sonstiges</label>
+          </button>
+        </div>
+        <aside class="tip-card">
+          <div class="eyebrow">Wartungstipp</div>
+          <blockquote id="tip">Kette nach nassen Touren abwischen und ölen — spart Zahnkränze.</blockquote>
+        </aside>
+      </div>
+
+      <section class="card route-card">
+        <div class="route-thumb">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="route-meta">
+          <h3 id="routeName">Abendrunde am Fluss</h3>
+          <p id="routeMeta">32.4 km · Strava · heute</p>
+          <div class="progress"><span id="healthBar"></span></div>
+        </div>
+        <div class="brand-pill" title="Activity">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+        </div>
+      </section>
+    </div>
+
+    <!-- ADD -->
+    <div id="panel-add" class="panel">
+      <h2>Manuell eintragen</h2>
+      <div class="tabs">
+        <button type="button" class="active" data-mode="ride" onclick="setMode('ride')">Fahrt</button>
+        <button type="button" data-mode="part" onclick="setMode('part')">Teil</button>
+        <button type="button" data-mode="service" onclick="setMode('service')">Wartung</button>
+      </div>
+
+      <form class="form" id="form-ride" onsubmit="return saveRide(event)">
+        <label>Distanz (km)<input name="distance" type="number" step="0.1" min="0.1" required placeholder="32.5" /></label>
+        <label>Name<input name="name" type="text" placeholder="Abendrunde" /></label>
+        <label>Datum<input name="date" type="date" id="rideDate" required /></label>
+        <button class="btn-primary" type="submit">Fahrt speichern</button>
+      </form>
+
+      <form class="form" id="form-part" style="display:none" onsubmit="return savePart(event)">
+        <label>Kategorie
+          <select name="category">
+            <option value="brakes">Bremsen</option>
+            <option value="drivetrain">Antrieb</option>
+            <option value="wheels">Räder</option>
+            <option value="other">Sonstiges</option>
+          </select>
+        </label>
+        <label>Bezeichnung<input name="name" type="text" placeholder="z. B. Scheibenbeläge" /></label>
+        <label>Service-Intervall (km)<input name="interval" type="number" min="100" placeholder="1500" /></label>
+        <button class="btn-primary" type="submit">Teil anlegen</button>
+      </form>
+
+      <form class="form" id="form-service" style="display:none" onsubmit="return saveService(event)">
+        <label>Verschleißteil
+          <select name="partId" id="serviceParts"></select>
+        </label>
+        <label>Notiz<input name="note" type="text" placeholder="Beläge gewechselt" /></label>
+        <button class="btn-primary" type="submit">Wartung speichern</button>
+      </form>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="panel-settings" class="panel">
+      <h2>Einstellungen</h2>
+      <section class="card settings-block">
+        <h3>Strava</h3>
+        <p>Standalone-Vorschau mit Demo-Daten. In der React-App: OAuth + echte API.</p>
+        <button class="btn-primary" type="button" onclick="syncDemo()">Demo-Routen laden</button>
+      </section>
+      <section class="card settings-block">
+        <h3>Gesamt-Kilometerstand</h3>
+        <p id="totalKm">Aktuell: 1247 km am Rad</p>
+      </section>
+      <section class="card settings-block">
+        <h3>Verschleißteile</h3>
+        <div id="partsList"></div>
+      </section>
+    </div>
+
+    <nav class="bottom-nav">
+      <button type="button" class="nav-btn active" id="nav-dash" onclick="go('dash')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Dashboard
+      </button>
+      <button type="button" class="nav-btn" id="nav-add" onclick="go('add')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        Eintragen
+      </button>
+      <button type="button" class="nav-btn" id="nav-settings" onclick="go('settings')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+        Sync
+      </button>
+    </nav>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const KEY = "bike-care-standalone-v1";
+    const TIPS = [
+      "Kette nach nassen Touren abwischen und ölen — spart Zahnkränze.",
+      "Bremsbeläge prüfen, wenn der Hebelweg länger wird.",
+      "Reifenluftdruck vor jeder längeren Tour checken.",
+      "Nach 500 km: Schaltwerk und Umlenkung reinigen.",
+      "Speichenspannung bei unruhigem Laufrad prüfen lassen.",
+    ];
+    const LABELS = { brakes: "Bremsen", drivetrain: "Antrieb", wheels: "Räder", other: "Sonstiges" };
+
+    function today() { return new Date().toISOString().slice(0, 10); }
+    function daysAgo(n) {
+      const d = new Date(); d.setDate(d.getDate() - n);
+      return d.toISOString().slice(0, 10);
+    }
+
+    const seed = {
+      totalBikeKm: 1247,
+      wearParts: [
+        { id: "wp-brakes", name: "Bremsbeläge", category: "brakes", installedAtKm: 900, serviceIntervalKm: 1500 },
+        { id: "wp-drive", name: "Kette", category: "drivetrain", installedAtKm: 400, serviceIntervalKm: 3000 },
+        { id: "wp-wheels", name: "Reifen", category: "wheels", installedAtKm: 200, serviceIntervalKm: 5000 },
+        { id: "wp-cables", name: "Züge", category: "other", installedAtKm: 1000, serviceIntervalKm: 2000 },
+      ],
+      rides: [
+        { id: "r1", date: today(), distanceKm: 32.4, name: "Abendrunde am Fluss", source: "strava" },
+        { id: "r2", date: daysAgo(3), distanceKm: 48.1, name: "Wochenend-Tour", source: "manual" },
+        { id: "r3", date: daysAgo(8), distanceKm: 21.0, name: "Pendeln", source: "manual" },
+      ],
+      maintenance: [
+        { id: "m1", partId: "wp-brakes", date: daysAgo(20), note: "Beläge geprüft" },
+      ],
+    };
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(KEY);
+        return raw ? JSON.parse(raw) : structuredClone(seed);
+      } catch { return structuredClone(seed); }
+    }
+    function save(state) { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+    let state = load();
+
+    function remaining(part) {
+      const used = Math.max(0, state.totalBikeKm - part.installedAtKm);
+      return Math.max(0, Math.round(part.serviceIntervalKm - used));
+    }
+
+    function monthSummary() {
+      const now = new Date();
+      const y = now.getFullYear(), m = now.getMonth();
+      const rides = state.rides.filter((r) => {
+        const d = new Date(r.date);
+        return d.getFullYear() === y && d.getMonth() === m;
+      });
+      const maint = state.maintenance.filter((x) => {
+        const d = new Date(x.date);
+        return d.getFullYear() === y && d.getMonth() === m;
+      });
+      const km = Math.round(rides.reduce((s, r) => s + r.distanceKm, 0) * 10) / 10;
+      return { km, rideCount: rides.length, maintenanceCount: maint.length };
+    }
+
+    function toast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 2200);
+    }
+
+    function go(tab) {
+      document.getElementById("dash").classList.toggle("hidden", tab !== "dash");
+      document.getElementById("panel-add").classList.toggle("visible", tab === "add");
+      document.getElementById("panel-settings").classList.toggle("visible", tab === "settings");
+      document.getElementById("nav-dash").classList.toggle("active", tab === "dash");
+      document.getElementById("nav-add").classList.toggle("active", tab === "add");
+      document.getElementById("nav-settings").classList.toggle("active", tab === "settings");
+      if (tab === "settings") renderSettings();
+    }
+
+    function setMode(mode) {
+      document.querySelectorAll(".tabs button").forEach((b) => {
+        b.classList.toggle("active", b.dataset.mode === mode);
+      });
+      document.getElementById("form-ride").style.display = mode === "ride" ? "flex" : "none";
+      document.getElementById("form-part").style.display = mode === "part" ? "flex" : "none";
+      document.getElementById("form-service").style.display = mode === "service" ? "flex" : "none";
+    }
+
+    function saveRide(e) {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const distanceKm = Number(fd.get("distance"));
+      const name = String(fd.get("name") || "Manuelle Fahrt");
+      const date = String(fd.get("date"));
+      state.rides.unshift({ id: "r-" + Date.now(), date, distanceKm, name, source: "manual" });
+      state.totalBikeKm = Math.round((state.totalBikeKm + distanceKm) * 10) / 10;
+      save(state);
+      render();
+      toast("Fahrt gespeichert");
+      e.target.reset();
+      document.getElementById("rideDate").value = today();
+      go("dash");
+      return false;
+    }
+
+    function savePart(e) {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const category = String(fd.get("category"));
+      const name = String(fd.get("name") || LABELS[category]);
+      const serviceIntervalKm = Number(fd.get("interval")) || 2000;
+      state.wearParts.push({
+        id: "wp-" + Date.now(),
+        name,
+        category,
+        installedAtKm: state.totalBikeKm,
+        serviceIntervalKm,
+      });
+      save(state);
+      render();
+      toast("Verschleißteil angelegt");
+      e.target.reset();
+      go("dash");
+      return false;
+    }
+
+    function saveService(e) {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const partId = String(fd.get("partId"));
+      const note = String(fd.get("note") || "Wartung erledigt");
+      const part = state.wearParts.find((p) => p.id === partId);
+      if (part) part.installedAtKm = state.totalBikeKm;
+      state.maintenance.unshift({ id: "m-" + Date.now(), partId, date: today(), note });
+      save(state);
+      render();
+      toast("Wartung eingetragen");
+      e.target.reset();
+      go("dash");
+      return false;
+    }
+
+    function syncDemo() {
+      state.rides.unshift({
+        id: "strava-" + Date.now(),
+        date: today(),
+        distanceKm: 61.2,
+        name: "Sonntags-Longride",
+        source: "strava",
+      });
+      state.totalBikeKm = Math.round((state.totalBikeKm + 61.2) * 10) / 10;
+      save(state);
+      render();
+      toast("Demo-Route geladen");
+    }
+
+    function renderSettings() {
+      document.getElementById("totalKm").textContent = "Aktuell: " + state.totalBikeKm + " km am Rad";
+      document.getElementById("partsList").innerHTML = state.wearParts.map((p) =>
+        "<div style='padding:8px 0;border-bottom:1px solid var(--line)'><strong>" +
+        p.name + " · " + LABELS[p.category] + "</strong><br><span style='color:var(--muted);font-size:0.78rem'>Rest " +
+        remaining(p) + " km von " + p.serviceIntervalKm + " km</span></div>"
+      ).join("");
+      document.getElementById("serviceParts").innerHTML = state.wearParts.map((p) =>
+        "<option value='" + p.id + "'>" + p.name + " (" + LABELS[p.category] + ")</option>"
+      ).join("");
+    }
+
+    function render() {
+      const now = new Date();
+      const months = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+      const days = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+      document.getElementById("clock").textContent =
+        String(now.getHours()).padStart(2, "0") + "." + String(now.getMinutes()).padStart(2, "0");
+      document.getElementById("monthLabel").textContent = months[now.getMonth()];
+      document.getElementById("dayLabel").textContent = String(now.getDate());
+      document.getElementById("weekdayLabel").textContent = days[now.getDay()];
+      document.getElementById("tip").textContent = TIPS[now.getDate() % TIPS.length];
+
+      const s = monthSummary();
+      document.getElementById("monthKm").textContent = s.km + " km";
+      document.getElementById("monthRides").textContent = s.rideCount + " Fahrten";
+      document.getElementById("monthMaint").textContent = s.maintenanceCount + " Wartungen";
+
+      const latest = [...state.rides].sort((a, b) => b.date.localeCompare(a.date))[0];
+      if (latest) {
+        document.getElementById("routeName").textContent = latest.name;
+        const when = latest.date === today() ? "heute" : latest.date.slice(5).replace("-", ".");
+        document.getElementById("routeMeta").textContent =
+          latest.distanceKm + " km · " + (latest.source === "strava" ? "Strava" : "Manuell") + " · " + when;
+      }
+
+      const tiles = document.querySelectorAll(".tile-grid .tile");
+      state.wearParts.slice(0, 4).forEach((p, i) => {
+        if (!tiles[i]) return;
+        const rem = remaining(p);
+        const badge = tiles[i].querySelector(".badge");
+        badge.textContent = rem > 999 ? Math.round(rem / 1000) + "k" : rem;
+        badge.className = "badge " + (rem < 200 ? "" : rem < 500 ? "warn" : "ok");
+        tiles[i].querySelector("label").textContent = LABELS[p.category];
+      });
+
+      const critical = [...state.wearParts]
+        .map((p) => ({ rem: remaining(p), used: Math.max(0, state.totalBikeKm - p.installedAtKm), interval: p.serviceIntervalKm }))
+        .sort((a, b) => a.rem - b.rem)[0];
+      if (critical) {
+        const pct = Math.min(100, Math.round((critical.used / critical.interval) * 100));
+        document.getElementById("healthBar").style.width = pct + "%";
+      }
+
+      document.getElementById("rideDate").value = today();
+      renderSettings();
+    }
+
+    render();
+  </script>
+</body>
+</html>

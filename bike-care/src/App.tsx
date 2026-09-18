@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   Activity,
-  Bike,
   CalendarDays,
   CircleDot,
   Disc,
@@ -48,9 +47,23 @@ function BrandHeader() {
   return (
     <header className="brand">
       <div className="brand-mark" aria-hidden>
-        <Bike size={22} strokeWidth={1.8} />
+        <svg viewBox="0 0 64 64" width="36" height="36" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="16" cy="42" r="11" />
+          <circle cx="16" cy="42" r="3.2" />
+          <circle cx="48" cy="42" r="11" />
+          <circle cx="48" cy="42" r="3.2" />
+          <path d="M16 42 L28 24 H38 L48 42" />
+          <path d="M28 24 L34 42" />
+          <path d="M24 42 H34" />
+          <path d="M24 24 H32" strokeWidth="2.8" />
+          <path d="M28 24 V20" />
+          <path d="M38 24 L44 16" />
+          <path d="M41 16 H48" strokeWidth="2.8" />
+          <circle cx="34" cy="42" r="4.5" />
+          <path d="M31 39 L37 45" />
+        </svg>
       </div>
-      <h1>NOAH&apos;S Garage</h1>
+      <h1>Noah&apos;s Garage</h1>
       <p>Bike Care · Verschleiß · Strava</p>
     </header>
   )

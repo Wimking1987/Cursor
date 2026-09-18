@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0c0a12" />
-  <meta name="description" content="NOAH'S Garage — Fahrrad-Wartung, Verschleißteile & Strava" />
-  <title>NOAH'S Garage</title>
+  <meta name="description" content="Noah's Garage — Fahrrad-Wartung, Verschleißteile & Strava" />
+  <title>Noah's Garage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -69,9 +69,22 @@
     .brand-mark {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-      color: var(--accent);
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 12px;
+      border-radius: 22px;
+      color: #fff;
+      background:
+        linear-gradient(145deg, rgba(255, 143, 107, 0.35), rgba(255, 90, 54, 0.15)),
+        linear-gradient(160deg, #3a2f52, #1a1428);
+      border: 1px solid rgba(255, 90, 54, 0.35);
+      box-shadow: 0 10px 28px rgba(255, 90, 54, 0.25), inset 0 1px 0 rgba(255,255,255,0.12);
+    }
+    .brand-mark svg {
+      width: 36px;
+      height: 36px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
     }
     .brand h1 {
       font-family: var(--display);
@@ -535,9 +548,28 @@
 <body>
   <!-- Inline SVG icon sprite -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-    <symbol id="i-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="6.5" cy="16.5" r="3.5"/><circle cx="17.5" cy="16.5" r="3.5"/>
-      <path d="M6.5 16.5 10 7h3l2.5 5.5H19"/><path d="m10 7 2 5.5"/>
+    <symbol id="i-bike" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <!-- rear wheel -->
+      <circle cx="16" cy="42" r="11"/>
+      <circle cx="16" cy="42" r="3.2"/>
+      <path d="M16 31v6M16 47v6M5 42h6M21 42h6" stroke-width="1.6" opacity="0.7"/>
+      <!-- front wheel -->
+      <circle cx="48" cy="42" r="11"/>
+      <circle cx="48" cy="42" r="3.2"/>
+      <path d="M48 31v6M48 47v6M37 42h6M53 42h6" stroke-width="1.6" opacity="0.7"/>
+      <!-- frame -->
+      <path d="M16 42 L28 24 H38 L48 42"/>
+      <path d="M28 24 L34 42"/>
+      <path d="M24 42 H34"/>
+      <!-- seat -->
+      <path d="M24 24 H32" stroke-width="2.8"/>
+      <path d="M28 24 V20"/>
+      <!-- handlebar -->
+      <path d="M38 24 L44 16"/>
+      <path d="M41 16 H48" stroke-width="2.8"/>
+      <!-- pedals / crank -->
+      <circle cx="34" cy="42" r="4.5"/>
+      <path d="M31 39 L37 45"/>
     </symbol>
     <symbol id="i-brake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="9"/>
@@ -602,10 +634,10 @@
 
   <div class="app-shell">
     <header class="brand">
-      <div class="brand-mark">
-        <svg width="22" height="22"><use href="#i-logo"/></svg>
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><use href="#i-bike"/></svg>
       </div>
-      <h1>NOAH'S Garage</h1>
+      <h1>Noah's Garage</h1>
       <p>Bike Care · Verschleiß · Strava</p>
     </header>
 
